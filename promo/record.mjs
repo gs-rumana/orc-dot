@@ -1,6 +1,7 @@
 /**
- * Renders promo/.build/promo.html frame-by-frame in Chrome and encodes an
- * X-ready MP4 (1080×1080, H.264, 30fps, faststart) plus a poster frame.
+ * Renders promo/.build/promo.html frame-by-frame in Chrome and encodes the
+ * silent picture (1080×1080, H.264, 30fps) to promo/.build/video.mp4, plus a
+ * poster frame. promo/sound.mjs then adds the soundtrack.
  *
  * Needs ffmpeg on PATH and puppeteer-core. If puppeteer-core isn't installed
  * in this project, point PROMO_TOOLS at a folder that has it in node_modules.
@@ -44,7 +45,7 @@ for (let i = 0; i < total; i++) {
 }
 await browser.close();
 
-const out = join(here, "orc-dot-promo.mp4");
+const out = join(build, "video.mp4");
 execFileSync(
   "ffmpeg",
   [
@@ -53,7 +54,6 @@ execFileSync(
     "-i", join(frames, "f%04d.png"),
     "-c:v", "libx264", "-preset", "slow", "-crf", "18",
     "-pix_fmt", "yuv420p", "-profile:v", "high",
-    "-movflags", "+faststart",
     out,
   ],
   { stdio: "inherit" },
@@ -63,4 +63,5 @@ execFileSync("ffmpeg", [
   "-i", join(frames, `f${String(Math.round(20.9 * FPS)).padStart(4, "0")}.png`),
   join(here, "orc-dot-promo-poster.png"),
 ]);
+rmSync(frames, { recursive: true, force: true });
 console.log(`Wrote ${out}`);

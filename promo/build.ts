@@ -104,7 +104,7 @@ scenes.push({
     ["horned-helm", "Horned helm", { beard: "full", hairColor: "ginger", hair: "none" }],
     ["spiked-crown", "Spiked crown", { skin: "ember", tusks: "gilded", trinket: "earrings" }],
     ["bandana", "Bandana", { skin: "forest", markings: "warpaint", trinket: "nose-ring" }],
-    ["skull-cap", "Skull cap", { skin: "slate", eyes: "glow", markings: "mask", tusks: "large" }],
+    ["skull-cap", "Skull cap", { skin: "slate", eyes: "glow", markings: "mask", tusks: "large", hair: "braids" }],
   ];
   scenes.push({
     id: "gear",
@@ -132,7 +132,7 @@ scenes.push({
     ["wink", "Wink", 2.25],
     ["startle", "Startle", 3.25],
     ["drowsy", "Drowsy", 4.05],
-    ["look-around", "Look around", 0.9],
+    ["look-around", "Look around", 2.1],
   ];
   const dur = 1.35;
   scenes.push({
@@ -204,6 +204,78 @@ function SHUFFLE_ICON() {
 }
 
 const DURATION = 23.5;
+
+// ───────────── sound cues (consumed by promo/sound.mjs) ─────────────
+// Times come from the same scene data and CSS keyframe percentages that
+// drive the picture, so audio stays in sync when scenes are retimed.
+
+export interface Cue {
+  t: number;
+  sound: string;
+  /** Optional variation index (pitch step, item number). */
+  n?: number;
+}
+
+/** Video times inside an avatar's window where its animation hits `frac` of a cycle. */
+function cycleHits(av: Avatar, sceneEnd: number, period: number, frac: number): number[] {
+  const end = av.end ?? sceneEnd;
+  const hits: number[] = [];
+  // Animation clock c = t - start + shift; find t where c ≡ frac·period.
+  const first = av.start - av.shift + frac * period;
+  for (let t = first - period * 10; t < end; t += period) {
+    if (t >= av.start) hits.push(+t.toFixed(3));
+  }
+  return hits;
+}
+
+function buildCues(): Cue[] {
+  const cues: Cue[] = [];
+  const scene = (id: string) => scenes.find((s) => s.id === id)!;
+
+  // Hook: boing as the hop leaves the ground (12% → 22% of a 2.6s hop), thud on landing (47%).
+  const hook = scene("hook");
+  for (const t of cycleHits(hook.avatars[0], hook.end, 2.6, 0.12)) cues.push({ t, sound: "boing" });
+  for (const t of cycleHits(hook.avatars[0], hook.end, 2.6, 0.47)) cues.push({ t, sound: "thud" });
+
+  // Montage: button click + pop for every new orc.
+  scene("montage").avatars.forEach((av, i) => {
+    cues.push({ t: av.start, sound: "click" });
+    cues.push({ t: av.start + 0.02, sound: "pop", n: i });
+  });
+
+  // Gear: a material-specific hit as each piece of headgear pops in.
+  for (const av of scene("gear").avatars) {
+    // Conflicts (e.g. skull cap + mohawk) silently drop headgear; fail loudly instead.
+    if (av.config.headgear === "none") throw new Error("Gear shot lost its headgear to a conflict");
+    cues.push({ t: av.start, sound: `gear-${av.config.headgear}` });
+  }
+
+  // Eyes: cue the key moment of each expression (keyframe % × cycle length).
+  const eyeKeys: Record<string, { period: number; frac: number; sound: string }[]> = {
+    wink: [{ period: 6, frac: 0.4, sound: "wink" }],
+    startle: [{ period: 5.6, frac: 0.62, sound: "startle" }],
+    drowsy: [{ period: 7.6, frac: 0.665, sound: "wake" }],
+    "look-around": [{ period: 9, frac: 0.26, sound: "dart" }],
+  };
+  const eyes = scene("eyes");
+  for (const av of eyes.avatars) {
+    // The drowsy shot opens with the lids already sinking: yawn right away.
+    if (av.config.eyeMotion === "drowsy") cues.push({ t: av.start + 0.08, sound: "yawn" });
+    for (const key of eyeKeys[av.config.eyeMotion] ?? []) {
+      for (const t of cycleHits(av, eyes.end, key.period, key.frac)) cues.push({ t, sound: key.sound });
+    }
+  }
+
+  // Crowd: a rising ripple of small pops.
+  scene("crowd").avatars.forEach((av, i) => cues.push({ t: av.start, sound: "pop-small", n: i }));
+
+  // End card: three orcs pop in, then the chime as the logo fades up.
+  const end = scene("end");
+  end.avatars.forEach((av, i) => cues.push({ t: av.start, sound: "pop", n: 4 + i * 2 }));
+  cues.push({ t: end.start + 0.3, sound: "chime" });
+
+  return cues.sort((a, b) => a.t - b.t);
+}
 
 const css = [
   ...new Set(
@@ -326,4 +398,5 @@ window.renderAt(Number(location.hash.slice(1) || 0));
 const outDir = join(root, "promo/.build");
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, "promo.html"), html);
-console.log(`Wrote promo/.build/promo.html (${DURATION}s)`);
+writeFileSync(join(outDir, "cues.json"), JSON.stringify({ duration: DURATION, cues: buildCues() }, null, 2));
+console.log(`Wrote promo/.build/promo.html and cues.json (${DURATION}s)`);
