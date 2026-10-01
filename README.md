@@ -1,101 +1,130 @@
+<div align="center">
+
+<img src="docs/orc-parade.svg" alt="Six animated orcs from Orc Dot: a hopping mohawk orc, a squinting warrior, a winking viking, a glowing-eyed shaman, a drowsy napper and a startled pirate" width="100%">
+
 # Orc Dot
 
-Browser studio for cute animated orc avatars. Mix face parts, orcish gear and motion presets (or hit **Randomize**), preview at several sizes, then export an SVG and a standalone CSS snippet.
+**Tiny tusked friends, hand-assembled in your browser.**
 
-## Requirements
+Build a cute animated orc avatar, give it a horned helm and a questionable nose ring,<br>
+then take it home as a tidy SVG + CSS snippet. No sign-up, no uploads, no goblins.
 
-- Node.js 20.9+
-- npm 10+
+### [🟢 Summon an orc → orc-dot.web.app](https://orc-dot.web.app)
 
-## Setup
+</div>
+
+---
+
+## What is this?
+
+Orc Dot is a little avatar studio for people who think every profile picture should have tusks.
+
+Pick a head shape, slap on some war paint, choose how your orc wiggles, and export it. Every orc is pure vector: one SVG plus a small CSS file. It stays crisp at 16px or on a billboard, and it breathes, blinks and twitches its ears on its own.
+
+<div align="center">
+<img src="docs/studio.png" alt="The Orc Dot studio: a forest-green orc with a mohawk, red bandana, warpaint, nose ring, goatee and large tusks, with the Gear tab open showing hair, beard, headgear, war paint and trinket options" width="100%">
+</div>
+
+## The armory 🪓
+
+Mix and match from **six head shapes** and a **pile of gear**. Every accessory lines up on every shape, because each head is drawn on the same frame.
+
+| | |
+|---|---|
+| **Heads** | blob, bean, squircle, egg, pebble, hex |
+| **Skins** | moss, forest, olive, sage, slate, ash, umber, ember |
+| **Ears** | pointy, long, droopy, notched (battle-tested™), or none |
+| **Eyes** | dots, round, almond, angry, sleepy, happy, glow, mismatched |
+| **Brows** | heavy, angry, worried, unibrow |
+| **Mouths** | smile, grin, smirk, grumpy, roar |
+| **Tusks** | small, medium, large, asymmetric, chipped, gilded (they grow *up*, like proper tusks) |
+| **Hair** | mohawk, topknot, tufts, mane, braids, in black, brown, ginger, silver or skin tone |
+| **Beards** | goatee, braided, full, mutton chops |
+| **Headgear** | horned helm, spiked crown, bandana, skull cap |
+| **War paint** | warpaint, mask, tribal, scar, freckles |
+| **Trinkets** | nose ring, nose bone, earrings, eyepatch |
+
+Can't decide? Smash **Randomize** until an orc speaks to you.
+
+> **Wardrobe rules:** a helmet won't fit over a mohawk, a crown squashes a topknot, and earrings need ears. When two picks clash, **your latest pick wins** and the other quietly steps aside.
+
+## It's alive! 🫧
+
+These orcs don't just sit there.
+
+- **Body:** breathe, bob, breathe + bob, sway or hop, with squash & stretch and proper easing. The face and headgear lag a beat behind the head (follow-through), so it feels squishy rather than robotic.
+- **Little things:** ears twitch on their own irregular clocks. Mohawks, braids, beard braids, nose rings and earrings swing. Bandana tails flutter, and roaring mouths chomp.
+- **Eyes:** blink, double blink, wink, glance, look around, squint, startle or drowsy. Blinks snap shut fast and open slower, like real lids. Brows join in: they lower when squinting, lift when startled and dip on a wink. Glowing eyes pulse.
+- **Kind to everyone:** there's a pause button, and the studio starts paused if your system asks for reduced motion. Exported CSS respects `prefers-reduced-motion` too.
+
+## Taking your orc home 🏠
+
+Hit **Export** and you get:
+
+1. **SVG:** the orc itself, with readable class names like `orc-avatar__eyes`, `orc-avatar__tusks` and `orc-avatar__headgear`, plus modifiers such as `orc-avatar--hop` and `orc-avatar--eyes-wink`.
+2. **CSS snippet:** only the keyframes your orc actually uses. No Tailwind, no framework. Every moving part pivots on fixed viewBox coordinates (`transform-box: view-box`), so ears twitch from the base and earrings swing from the lobe.
+
+> **Heads up:** your page's CSS can't reach inside an SVG loaded with `<img src="orc.svg">`. To animate, paste the SVG **inline** in your HTML next to the CSS snippet. The downloaded `.svg` on its own works as a static image anywhere.
+
+What you see in the studio is exactly what you export: the preview renders the same SVG string as the download.
+
+## Run it locally
+
+Needs **Node.js 20.9+** and npm.
 
 ```bash
 npm install
-npm run dev
+npm run dev        # → http://localhost:3000
 ```
 
-Open http://localhost:3000
+| Script | What it does |
+|--------|--------------|
+| `npm run dev` | Dev server |
+| `npm run build` | Static export to `out/` |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint |
+| `npm test` | Vitest unit tests |
+| `npm run test:watch` | Tests in watch mode |
+| `npm run icons` | Regenerate the favicon and app icons from the brand orc |
+| `npm run readme-art` | Regenerate the animated orc parade at the top of this README |
+| `npm run deploy` | Build and ship to Firebase Hosting |
 
-## Scripts
+**Built with** Next.js (App Router, static export), React, TypeScript, Tailwind, shadcn/ui + Base UI, iconsax-react, Fredoka + Nunito, and Vitest.
 
-| Script | Purpose |
-|--------|---------|
-| npm run dev | Next.js dev server |
-| npm run build | Production build |
-| npm start | Serve production build |
-| npm run lint | ESLint |
-| npm test | Vitest unit tests |
-| npm run test:watch | Vitest watch mode |
-| npm run icons | Regenerate favicon / app icons from the brand orc |
+<details>
+<summary><b>How the orc is put together</b></summary>
 
-## Presets
+<br>
 
-**Face**
-- **Shapes:** blob, bean, squircle, egg, pebble, hex (all share one anchor frame, so every accessory fits every shape)
-- **Skins:** moss, forest, olive, sage, slate, ash, umber, ember
-- **Ears:** none, pointy, long, droopy, notched
-- **Eyes:** none, dots, round, almond, angry, sleepy, happy, glow, mismatched
-- **Brows:** none, heavy, angry, worried, unibrow
-- **Mouth:** smile, grin, smirk, grumpy, roar
-- **Tusks:** none, small, medium, large, asymmetric, chipped, gilded (rising from the lower jaw)
+Layers, back to front: hair (back) → ears → head → face (markings, beard, eyes, brows, nose, mouth, tusks, trinket) → hair (front) → headgear.
 
-**Gear**
-- **Hair:** none, mohawk, topknot, tufts, mane, braids — colors: black, brown, ginger, silver, skin tone
-- **Beard:** none, goatee, braided, full, chops
-- **Headgear:** none, horned helm, spiked crown, bandana, skull cap
-- **War paint:** none, warpaint, mask, tribal, scar, freckles
-- **Trinkets:** none, nose ring, nose bone, earrings, eyepatch
+- `lib/avatar/buildSvg.ts` is the single source of truth for the artwork, used by both the preview and the export.
+- `lib/avatar/buildCss.ts` emits only the animation rules a given orc needs.
+- `lib/avatar/catalog.ts` holds the palette, shared layout anchors and head shapes.
+- `lib/avatar/normalize.ts` validates configs and resolves wardrobe clashes.
 
-Some combos conflict (a helm or skull cap can't sit over a mohawk/topknot/tufts, a crown over a topknot, earrings need ears). The **most recent pick wins** and the other choice resets.
+</details>
 
-**Motion**
-- **Body:** still, breathe, bob, breathe + bob, sway, hop — with squash & stretch, per-keyframe easing and a pivot at the base of the head. The face and headgear follow a beat later (follow-through).
-- **Secondary motion** (whenever the body moves): ears twitch on independent irregular clocks; mohawks, braids, beard braids, nose rings and earrings swing; bandana tails flutter; a roaring mouth chomps.
-- **Eyes:** still, blink, double blink, wink, glance, look around, squint, startle, drowsy. Blinks close fast and open slower, gaze shifts carry a blink, and brows react (lower on squint, lift on startle, dip on wink). Glowing eyes pulse.
+## Deploying 🚀
 
-Layer order: hair (back) → ears → body → face (markings, beard, eyes, brows, nose, mouth, tusks, trinket) → hair (front) → headgear.
-
-## Export
-
-The Export dialog provides:
-
-1. **SVG** — standalone markup. Key classes: `orc-avatar`, `orc-avatar__rig`, `orc-avatar__body`, `orc-avatar__face`, `orc-avatar__eyes` / `__eye--left|right` / `__pupil`, `orc-avatar__brows`, `orc-avatar__tusks`, `orc-avatar__hair--back|front`, `orc-avatar__beard`, `orc-avatar__headgear`, plus modifiers `orc-avatar--breathe`, `--bob`, `--sway`, `--hop` and `orc-avatar--eyes-<motion>`.
-2. **CSS snippet** — only the keyframes and rules that avatar needs (no Tailwind). Every animated part pivots on fixed viewBox coordinates via `transform-box: view-box`. Includes a `prefers-reduced-motion` guard.
-
-The studio preview renders the exact same SVG string as the export, so they can't drift apart.
-
-(no Tailwind).
-
-### Inline SVG required for motion
-
-CSS animations on SVG **do not run** when the file is referenced as an external img. For motion to work, paste the SVG **inline** into your HTML (or embed via object). The studio Export panel and this README both call that out.
-
-Download still saves a .svg file useful as a static asset; pair it with the CSS snippet only when you inline the markup.
-
-## Stack
-
-Next.js App Router, React, TypeScript, Tailwind, shadcn/ui + Base UI, iconsax-react (UI icons only), Fredoka + Nunito via `next/font`, Vitest.
-
-## Deploying
-
-Live at **https://orc-dot.web.app** (Firebase Hosting, project `orc-dot`).
-
-The site is a static export (`output: "export"` in `next.config.ts`): `next build` writes plain files to `out/`, which Firebase Hosting serves. No server or paid plan is needed.
+Live at **https://orc-dot.web.app** on Firebase Hosting (project `orc-dot`). The site is a fully static export, so it needs no server and runs on the free plan.
 
 ```bash
 npx firebase-tools login   # once
 npm run deploy             # next build + firebase deploy --only hosting
 ```
 
-- **Site URL:** `NEXT_PUBLIC_SITE_URL` in `.env.production` (committed, not secret) sets canonical URLs, Open Graph/Twitter images, `robots.txt` and `sitemap.xml`. If you connect a custom domain in the Firebase console, update it there and redeploy.
-- **Headers & caching** live in `firebase.json` (static exports can't use `headers()` in `next.config.ts`): security headers on every response, `no-cache` on HTML so deploys show up immediately, one-year immutable caching for hashed `/_next/static` assets, and an explicit `image/png` type for the extensionless `/opengraph-image` and `/twitter-image`.
-- **Metadata routes** (`robots.ts`, `sitemap.ts`, `manifest.ts`, `opengraph-image.tsx`) must keep `export const dynamic = "force-static"` or the export fails.
-- **Preview locally exactly as Firebase serves it:** `npx next build && npx firebase-tools serve --only hosting`.
+- **Site URL:** `NEXT_PUBLIC_SITE_URL` in `.env.production` (committed, not secret) drives canonical URLs, social images, `robots.txt` and `sitemap.xml`. If you hook up a custom domain, change it there and redeploy.
+- **Headers & caching** live in `firebase.json`, because static exports can't use `headers()` in `next.config.ts`. That covers security headers, `no-cache` HTML so deploys land instantly, year-long caching for hashed assets, and an explicit `image/png` type for the extensionless `/opengraph-image` and `/twitter-image`.
+- **Metadata routes** (`robots.ts`, `sitemap.ts`, `manifest.ts`, `opengraph-image.tsx`) must keep `export const dynamic = "force-static"`, or the export fails.
+- **Preview exactly as Firebase serves it:** `npx next build && npx firebase-tools serve --only hosting`.
 
-SEO and sharing are built in: page metadata (`app/layout.tsx`, `lib/site.ts`), `robots.txt`, `sitemap.xml`, a web manifest, generated Open Graph/Twitter images, favicon/app icons, `WebApplication` JSON-LD and a branded 404.
-
-After going live, submit `https://orc-dot.web.app/sitemap.xml` in Google Search Console and check a share preview (e.g. opengraph.xyz).
+SEO comes built in: metadata, Open Graph and Twitter cards, icons, web manifest, sitemap, `WebApplication` JSON-LD and a 404 page starring a very lost orc.
 
 ## Credits
 
-Fredoka (OG image font, `assets/fonts/`) is licensed under the SIL Open Font License; see `assets/fonts/OFL.txt`.
+Fredoka (used for the social share image, in `assets/fonts/`) is licensed under the SIL Open Font License; see `assets/fonts/OFL.txt`.
+
+<div align="center">
+<sub>No orcs were harmed in the making of this README. One got a little lost, but we found them.</sub>
+</div>

@@ -1,0 +1,635 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 978 194" width="978" height="194" role="img" aria-label="Six animated orcs from Orc Dot: a hopping mohawk orc, a squinting warrior, a winking viking, a glowing-eyed shaman, a drowsy napper and a startled pirate">
+<style>.orc-avatar {
+  display: inline-block;
+  overflow: visible;
+}
+.orc-avatar * {
+  transform-box: view-box;
+}
+.orc-avatar__rig {
+  transform-origin: 64px 114px;
+}
+.orc-avatar__eye--left,
+.orc-avatar__eye--left .orc-avatar__pupil {
+  transform-origin: 47px 64px;
+}
+.orc-avatar__eye--right,
+.orc-avatar__eye--right .orc-avatar__pupil {
+  transform-origin: 81px 64px;
+}
+
+@keyframes orc-avatar-hop {
+  0% { transform: translateY(0) scale(1, 1); animation-timing-function: ease-in-out; }
+  12% { transform: translateY(0) scale(1.07, 0.92); animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1); }
+  22% { transform: translateY(-8px) scale(0.95, 1.06); animation-timing-function: ease-out; }
+  31% { transform: translateY(-11px) scale(1, 1); animation-timing-function: ease-in; }
+  41% { transform: translateY(-4px) scale(0.96, 1.05); animation-timing-function: cubic-bezier(0.5, 0, 1, 1); }
+  47% { transform: translateY(0) scale(1.08, 0.91); animation-timing-function: ease-out; }
+  57% { transform: translateY(0) scale(0.98, 1.02); animation-timing-function: ease-in-out; }
+  66%, 100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes orc-avatar-hop-face {
+  0%, 10%, 66%, 100% { transform: translateY(0); }
+  14% { transform: translateY(1px); }
+  31% { transform: translateY(-1px); }
+  49% { transform: translateY(1.4px); }
+  58% { transform: translateY(-0.4px); }
+}
+.orc-avatar--hop {
+  --orc-cycle: 2.6s;
+}
+.orc-avatar--hop .orc-avatar__rig {
+  animation: orc-avatar-hop 2.6s infinite;
+}
+.orc-avatar--hop .orc-avatar__face {
+  animation: orc-avatar-hop-face 2.6s ease-in-out 0.14s infinite;
+}
+.orc-avatar--hop .orc-avatar__headgear {
+  animation: orc-avatar-hop-face 2.6s ease-in-out 0.26s infinite;
+}
+
+@keyframes orc-avatar-ear-left {
+  0%, 76%, 100% { transform: rotate(0deg); }
+  78% { transform: rotate(-9deg); }
+  80.5% { transform: rotate(3deg); }
+  83% { transform: rotate(-4deg); }
+  86% { transform: rotate(0.5deg); }
+  89% { transform: rotate(0deg); }
+}
+@keyframes orc-avatar-ear-right {
+  0%, 40%, 100% { transform: rotate(0deg); }
+  42% { transform: rotate(8deg); }
+  44.5% { transform: rotate(-3deg); }
+  47% { transform: rotate(0deg); }
+}
+.orc-avatar__ear--left {
+  transform-origin: 28px 63px;
+  animation: orc-avatar-ear-left 6.8s ease-in-out infinite;
+}
+.orc-avatar__ear--right {
+  transform-origin: 100px 63px;
+  animation: orc-avatar-ear-right 8.6s ease-in-out 1.3s infinite;
+}
+
+@keyframes orc-avatar-swing {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+@keyframes orc-avatar-jiggle {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+.orc-avatar__hair--front {
+  transform-origin: 64px 38px;
+  animation: orc-avatar-jiggle var(--orc-cycle, 4s) ease-in-out 0.22s infinite;
+}
+
+@keyframes orc-avatar-blink {
+  0%, 30%, 33.4%, 82%, 85.4%, 100% { transform: scaleY(1); }
+  31.2%, 31.6%, 83.2%, 83.6% { transform: scaleY(0.08); }
+}
+.orc-avatar--eyes-blink .orc-avatar__eye { animation: orc-avatar-blink 7.2s infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orc-avatar,
+  .orc-avatar * {
+    animation: none !important;
+  }
+}
+
+.orc-avatar {
+  display: inline-block;
+  overflow: visible;
+}
+.orc-avatar * {
+  transform-box: view-box;
+}
+.orc-avatar__rig {
+  transform-origin: 64px 114px;
+}
+.orc-avatar__eye--left,
+.orc-avatar__eye--left .orc-avatar__pupil {
+  transform-origin: 47px 64px;
+}
+.orc-avatar__eye--right,
+.orc-avatar__eye--right .orc-avatar__pupil {
+  transform-origin: 81px 64px;
+}
+
+@keyframes orc-avatar-bob {
+  0%, 100% { transform: translateY(0) scale(1.012, 0.988); animation-timing-function: cubic-bezier(0.33, 0, 0.67, 1); }
+  50% { transform: translateY(-4px) scale(0.995, 1.008); animation-timing-function: cubic-bezier(0.33, 0, 0.67, 1); }
+}
+@keyframes orc-avatar-bob-face {
+  0%, 100% { transform: translateY(-0.5px); }
+  50% { transform: translateY(0.8px); }
+}
+.orc-avatar--bob {
+  --orc-cycle: 3.4s;
+}
+.orc-avatar--bob .orc-avatar__rig {
+  animation: orc-avatar-bob 3.4s infinite;
+}
+.orc-avatar--bob .orc-avatar__face {
+  animation: orc-avatar-bob-face 3.4s ease-in-out 0.14s infinite;
+}
+.orc-avatar--bob .orc-avatar__headgear {
+  animation: orc-avatar-bob-face 3.4s ease-in-out 0.26s infinite;
+}
+
+@keyframes orc-avatar-ear-left {
+  0%, 76%, 100% { transform: rotate(0deg); }
+  78% { transform: rotate(-9deg); }
+  80.5% { transform: rotate(3deg); }
+  83% { transform: rotate(-4deg); }
+  86% { transform: rotate(0.5deg); }
+  89% { transform: rotate(0deg); }
+}
+@keyframes orc-avatar-ear-right {
+  0%, 40%, 100% { transform: rotate(0deg); }
+  42% { transform: rotate(8deg); }
+  44.5% { transform: rotate(-3deg); }
+  47% { transform: rotate(0deg); }
+}
+.orc-avatar__ear--left {
+  transform-origin: 28px 63px;
+  animation: orc-avatar-ear-left 6.8s ease-in-out infinite;
+}
+.orc-avatar__ear--right {
+  transform-origin: 100px 63px;
+  animation: orc-avatar-ear-right 8.6s ease-in-out 1.3s infinite;
+}
+
+@keyframes orc-avatar-swing {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+@keyframes orc-avatar-jiggle {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+.orc-avatar__trinket--nose-ring {
+  transform-origin: 64px 79.5px;
+  animation: orc-avatar-swing var(--orc-cycle, 4s) ease-in-out 0.2s infinite;
+}
+
+@keyframes orc-avatar-squint {
+  0%, 18%, 74%, 100% { transform: scaleY(1); }
+  26%, 66% { transform: scaleY(0.45); }
+}
+@keyframes orc-avatar-squint-pupil {
+  0%, 26%, 68%, 100% { transform: translate(0, 0); }
+  34%, 44% { transform: translate(-2.5px, 0); }
+  50%, 60% { transform: translate(2.5px, 0); }
+}
+@keyframes orc-avatar-squint-brows {
+  0%, 18%, 74%, 100% { transform: translateY(0); }
+  26%, 66% { transform: translateY(2.5px); }
+}
+.orc-avatar--eyes-squint .orc-avatar__eye { animation: orc-avatar-squint 6.4s ease-in-out infinite; }
+.orc-avatar--eyes-squint .orc-avatar__pupil { animation: orc-avatar-squint-pupil 6.4s cubic-bezier(0.3, 0, 0.2, 1) infinite; }
+.orc-avatar--eyes-squint .orc-avatar__brows { animation: orc-avatar-squint-brows 6.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orc-avatar,
+  .orc-avatar * {
+    animation: none !important;
+  }
+}
+
+.orc-avatar {
+  display: inline-block;
+  overflow: visible;
+}
+.orc-avatar * {
+  transform-box: view-box;
+}
+.orc-avatar__rig {
+  transform-origin: 64px 114px;
+}
+.orc-avatar__eye--left,
+.orc-avatar__eye--left .orc-avatar__pupil {
+  transform-origin: 47px 64px;
+}
+.orc-avatar__eye--right,
+.orc-avatar__eye--right .orc-avatar__pupil {
+  transform-origin: 81px 64px;
+}
+
+@keyframes orc-avatar-sway {
+  0%, 100% { transform: rotate(-2.5deg); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.6); }
+  25% { transform: rotate(0deg) translateY(0.6px); animation-timing-function: cubic-bezier(0, 0.4, 0.5, 1); }
+  50% { transform: rotate(2.5deg); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.6); }
+  75% { transform: rotate(0deg) translateY(0.6px); animation-timing-function: cubic-bezier(0, 0.4, 0.5, 1); }
+}
+@keyframes orc-avatar-sway-face {
+  0%, 100% { transform: translateX(0.6px); }
+  50% { transform: translateX(-0.6px); }
+}
+.orc-avatar--sway {
+  --orc-cycle: 5.2s;
+}
+.orc-avatar--sway .orc-avatar__rig {
+  animation: orc-avatar-sway 5.2s infinite;
+}
+.orc-avatar--sway .orc-avatar__face {
+  animation: orc-avatar-sway-face 5.2s ease-in-out 0.14s infinite;
+}
+.orc-avatar--sway .orc-avatar__headgear {
+  animation: orc-avatar-sway-face 5.2s ease-in-out 0.26s infinite;
+}
+
+@keyframes orc-avatar-ear-left {
+  0%, 76%, 100% { transform: rotate(0deg); }
+  78% { transform: rotate(-9deg); }
+  80.5% { transform: rotate(3deg); }
+  83% { transform: rotate(-4deg); }
+  86% { transform: rotate(0.5deg); }
+  89% { transform: rotate(0deg); }
+}
+@keyframes orc-avatar-ear-right {
+  0%, 40%, 100% { transform: rotate(0deg); }
+  42% { transform: rotate(8deg); }
+  44.5% { transform: rotate(-3deg); }
+  47% { transform: rotate(0deg); }
+}
+.orc-avatar__ear--left {
+  transform-origin: 28px 63px;
+  animation: orc-avatar-ear-left 6.8s ease-in-out infinite;
+}
+.orc-avatar__ear--right {
+  transform-origin: 100px 63px;
+  animation: orc-avatar-ear-right 8.6s ease-in-out 1.3s infinite;
+}
+
+@keyframes orc-avatar-swing {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+@keyframes orc-avatar-jiggle {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+.orc-avatar__beard {
+  transform-origin: 64px 100px;
+  animation: orc-avatar-jiggle var(--orc-cycle, 4s) ease-in-out 0.3s infinite;
+}
+
+@keyframes orc-avatar-wink {
+  0%, 40%, 58%, 100% { transform: scaleY(1); }
+  42.5%, 54% { transform: scaleY(0.08); }
+}
+@keyframes orc-avatar-wink-other {
+  0%, 84%, 87.4%, 100% { transform: scaleY(1); }
+  85.2%, 85.6% { transform: scaleY(0.08); }
+}
+@keyframes orc-avatar-wink-brow {
+  0%, 40%, 58%, 100% { transform: translateY(0); }
+  42.5%, 54% { transform: translateY(2px); }
+}
+.orc-avatar--eyes-wink .orc-avatar__eye--left { animation: orc-avatar-wink 6s ease-in-out infinite; }
+.orc-avatar--eyes-wink .orc-avatar__eye--right { animation: orc-avatar-wink-other 6s infinite; }
+.orc-avatar--eyes-wink .orc-avatar__brow--left { animation: orc-avatar-wink-brow 6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orc-avatar,
+  .orc-avatar * {
+    animation: none !important;
+  }
+}
+
+.orc-avatar {
+  display: inline-block;
+  overflow: visible;
+}
+.orc-avatar * {
+  transform-box: view-box;
+}
+.orc-avatar__rig {
+  transform-origin: 64px 114px;
+}
+.orc-avatar__eye--left,
+.orc-avatar__eye--left .orc-avatar__pupil {
+  transform-origin: 47px 64px;
+}
+.orc-avatar__eye--right,
+.orc-avatar__eye--right .orc-avatar__pupil {
+  transform-origin: 81px 64px;
+}
+
+@keyframes orc-avatar-breathe {
+  0%, 100% { transform: scale(1, 1); animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+  38% { transform: scale(0.988, 1.032); }
+  52% { transform: scale(0.99, 1.03); animation-timing-function: cubic-bezier(0.45, 0, 0.7, 1); }
+}
+@keyframes orc-avatar-breathe-face {
+  0%, 100% { transform: translateY(0); }
+  45% { transform: translateY(-0.6px); }
+}
+.orc-avatar--breathe {
+  --orc-cycle: 4.4s;
+}
+.orc-avatar--breathe .orc-avatar__rig {
+  animation: orc-avatar-breathe 4.4s infinite;
+}
+.orc-avatar--breathe .orc-avatar__face {
+  animation: orc-avatar-breathe-face 4.4s ease-in-out 0.14s infinite;
+}
+.orc-avatar--breathe .orc-avatar__headgear {
+  animation: orc-avatar-breathe-face 4.4s ease-in-out 0.26s infinite;
+}
+
+@keyframes orc-avatar-ear-left {
+  0%, 76%, 100% { transform: rotate(0deg); }
+  78% { transform: rotate(-9deg); }
+  80.5% { transform: rotate(3deg); }
+  83% { transform: rotate(-4deg); }
+  86% { transform: rotate(0.5deg); }
+  89% { transform: rotate(0deg); }
+}
+@keyframes orc-avatar-ear-right {
+  0%, 40%, 100% { transform: rotate(0deg); }
+  42% { transform: rotate(8deg); }
+  44.5% { transform: rotate(-3deg); }
+  47% { transform: rotate(0deg); }
+}
+.orc-avatar__ear--left {
+  transform-origin: 28px 63px;
+  animation: orc-avatar-ear-left 6.8s ease-in-out infinite;
+}
+.orc-avatar__ear--right {
+  transform-origin: 100px 63px;
+  animation: orc-avatar-ear-right 8.6s ease-in-out 1.3s infinite;
+}
+
+@keyframes orc-avatar-swing {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+@keyframes orc-avatar-jiggle {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+.orc-avatar__braid--left {
+  transform-origin: 20px 60px;
+  animation: orc-avatar-jiggle var(--orc-cycle, 4s) ease-in-out 0.3s infinite;
+}
+
+.orc-avatar__braid--right {
+  transform-origin: 108px 60px;
+  animation: orc-avatar-jiggle var(--orc-cycle, 4s) ease-in-out 0.4s infinite;
+}
+
+@keyframes orc-avatar-chomp {
+  0%, 58%, 100% { transform: scaleY(1); }
+  66% { transform: scaleY(0.72); }
+  74% { transform: scaleY(1.06); }
+  80% { transform: scaleY(1); }
+}
+.orc-avatar__mouth--roar {
+  transform-origin: 64px 87px;
+  animation: orc-avatar-chomp 3.2s ease-in-out infinite;
+}
+
+@keyframes orc-avatar-look-around {
+  0%, 8% { transform: translate(0, 0); }
+  12%, 26% { transform: translate(-3px, -2px); }
+  30%, 44% { transform: translate(3px, -1.5px); }
+  48%, 60% { transform: translate(2.5px, 2px); }
+  64%, 76% { transform: translate(-2.5px, 1.5px); }
+  80%, 100% { transform: translate(0, 0); }
+}
+@keyframes orc-avatar-look-around-blink {
+  0%, 28%, 30.4%, 77%, 79.4%, 100% { transform: scaleY(1); }
+  29%, 29.3%, 78%, 78.3% { transform: scaleY(0.08); }
+}
+.orc-avatar--eyes-look-around .orc-avatar__pupil { animation: orc-avatar-look-around 9s cubic-bezier(0.3, 0, 0.2, 1) infinite; }
+.orc-avatar--eyes-look-around .orc-avatar__eye { animation: orc-avatar-look-around-blink 9s infinite; }
+
+@keyframes orc-avatar-glow {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.6; }
+}
+.orc-avatar__glow {
+  animation: orc-avatar-glow 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orc-avatar,
+  .orc-avatar * {
+    animation: none !important;
+  }
+}
+
+.orc-avatar {
+  display: inline-block;
+  overflow: visible;
+}
+.orc-avatar * {
+  transform-box: view-box;
+}
+.orc-avatar__rig {
+  transform-origin: 64px 114px;
+}
+.orc-avatar__eye--left,
+.orc-avatar__eye--left .orc-avatar__pupil {
+  transform-origin: 47px 64px;
+}
+.orc-avatar__eye--right,
+.orc-avatar__eye--right .orc-avatar__pupil {
+  transform-origin: 81px 64px;
+}
+
+@keyframes orc-avatar-breathe {
+  0%, 100% { transform: scale(1, 1); animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+  38% { transform: scale(0.988, 1.032); }
+  52% { transform: scale(0.99, 1.03); animation-timing-function: cubic-bezier(0.45, 0, 0.7, 1); }
+}
+@keyframes orc-avatar-breathe-face {
+  0%, 100% { transform: translateY(0); }
+  45% { transform: translateY(-0.6px); }
+}
+.orc-avatar--breathe {
+  --orc-cycle: 4.4s;
+}
+.orc-avatar--breathe .orc-avatar__rig {
+  animation: orc-avatar-breathe 4.4s infinite;
+}
+.orc-avatar--breathe .orc-avatar__face {
+  animation: orc-avatar-breathe-face 4.4s ease-in-out 0.14s infinite;
+}
+.orc-avatar--breathe .orc-avatar__headgear {
+  animation: orc-avatar-breathe-face 4.4s ease-in-out 0.26s infinite;
+}
+
+@keyframes orc-avatar-ear-left {
+  0%, 76%, 100% { transform: rotate(0deg); }
+  78% { transform: rotate(-9deg); }
+  80.5% { transform: rotate(3deg); }
+  83% { transform: rotate(-4deg); }
+  86% { transform: rotate(0.5deg); }
+  89% { transform: rotate(0deg); }
+}
+@keyframes orc-avatar-ear-right {
+  0%, 40%, 100% { transform: rotate(0deg); }
+  42% { transform: rotate(8deg); }
+  44.5% { transform: rotate(-3deg); }
+  47% { transform: rotate(0deg); }
+}
+.orc-avatar__ear--left {
+  transform-origin: 28px 63px;
+  animation: orc-avatar-ear-left 6.8s ease-in-out infinite;
+}
+.orc-avatar__ear--right {
+  transform-origin: 100px 63px;
+  animation: orc-avatar-ear-right 8.6s ease-in-out 1.3s infinite;
+}
+
+@keyframes orc-avatar-swing {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+@keyframes orc-avatar-jiggle {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+.orc-avatar__hair--front {
+  transform-origin: 64px 38px;
+  animation: orc-avatar-jiggle var(--orc-cycle, 4s) ease-in-out 0.22s infinite;
+}
+
+@keyframes orc-avatar-drowsy {
+  0%, 100% { transform: scaleY(1); animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+  45% { transform: scaleY(0.45); }
+  58% { transform: scaleY(0.3); }
+  66% { transform: scaleY(0.1); animation-timing-function: cubic-bezier(0.1, 0.8, 0.2, 1); }
+  68% { transform: scaleY(1.08); }
+  71% { transform: scaleY(1); }
+}
+@keyframes orc-avatar-drowsy-pupil {
+  0%, 100% { transform: translate(0, 0); }
+  62% { transform: translate(0, 1.5px); }
+  68% { transform: translate(0, 0); }
+}
+@keyframes orc-avatar-drowsy-brows {
+  0%, 64%, 80%, 100% { transform: translateY(0); }
+  68% { transform: translateY(-3px); }
+}
+.orc-avatar--eyes-drowsy .orc-avatar__eye { animation: orc-avatar-drowsy 7.6s infinite; }
+.orc-avatar--eyes-drowsy .orc-avatar__pupil { animation: orc-avatar-drowsy-pupil 7.6s ease-in-out infinite; }
+.orc-avatar--eyes-drowsy .orc-avatar__brows { animation: orc-avatar-drowsy-brows 7.6s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orc-avatar,
+  .orc-avatar * {
+    animation: none !important;
+  }
+}
+
+.orc-avatar {
+  display: inline-block;
+  overflow: visible;
+}
+.orc-avatar * {
+  transform-box: view-box;
+}
+.orc-avatar__rig {
+  transform-origin: 64px 114px;
+}
+.orc-avatar__eye--left,
+.orc-avatar__eye--left .orc-avatar__pupil {
+  transform-origin: 47px 64px;
+}
+.orc-avatar__eye--right,
+.orc-avatar__eye--right .orc-avatar__pupil {
+  transform-origin: 81px 64px;
+}
+
+@keyframes orc-avatar-breathe-bob {
+  0%, 100% { transform: translateY(0) scale(1.01, 0.99); animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+  42% { transform: translateY(-3.5px) scale(0.988, 1.03); }
+  58% { transform: translateY(-3px) scale(0.99, 1.025); animation-timing-function: cubic-bezier(0.45, 0, 0.65, 1); }
+}
+@keyframes orc-avatar-breathe-bob-face {
+  0%, 100% { transform: translateY(-0.4px); }
+  50% { transform: translateY(0.8px); }
+}
+.orc-avatar--breathe.orc-avatar--bob {
+  --orc-cycle: 4s;
+}
+.orc-avatar--breathe.orc-avatar--bob .orc-avatar__rig {
+  animation: orc-avatar-breathe-bob 4s infinite;
+}
+.orc-avatar--breathe.orc-avatar--bob .orc-avatar__face {
+  animation: orc-avatar-breathe-bob-face 4s ease-in-out 0.14s infinite;
+}
+.orc-avatar--breathe.orc-avatar--bob .orc-avatar__headgear {
+  animation: orc-avatar-breathe-bob-face 4s ease-in-out 0.26s infinite;
+}
+
+@keyframes orc-avatar-ear-left {
+  0%, 76%, 100% { transform: rotate(0deg); }
+  78% { transform: rotate(-9deg); }
+  80.5% { transform: rotate(3deg); }
+  83% { transform: rotate(-4deg); }
+  86% { transform: rotate(0.5deg); }
+  89% { transform: rotate(0deg); }
+}
+@keyframes orc-avatar-ear-right {
+  0%, 40%, 100% { transform: rotate(0deg); }
+  42% { transform: rotate(8deg); }
+  44.5% { transform: rotate(-3deg); }
+  47% { transform: rotate(0deg); }
+}
+.orc-avatar__ear--left {
+  transform-origin: 28px 63px;
+  animation: orc-avatar-ear-left 6.8s ease-in-out infinite;
+}
+.orc-avatar__ear--right {
+  transform-origin: 100px 63px;
+  animation: orc-avatar-ear-right 8.6s ease-in-out 1.3s infinite;
+}
+
+@keyframes orc-avatar-flutter {
+  0%, 100% { transform: rotate(0deg) scale(1, 1); }
+  25% { transform: rotate(-7deg) scale(0.96, 1.04); }
+  50% { transform: rotate(3deg) scale(1.03, 0.97); }
+  75% { transform: rotate(-4deg) scale(1, 1); }
+}
+.orc-avatar__tails {
+  transform-origin: 104px 49px;
+  animation: orc-avatar-flutter 1.9s ease-in-out infinite;
+}
+
+@keyframes orc-avatar-startle {
+  0%, 62%, 92%, 100% { transform: scale(1); }
+  64.5% { transform: scale(1.2); }
+  80% { transform: scale(1.15); }
+}
+@keyframes orc-avatar-startle-pupil {
+  0%, 62%, 88%, 100% { transform: scale(1); }
+  64.5%, 80% { transform: scale(0.7); }
+}
+@keyframes orc-avatar-startle-brows {
+  0%, 62%, 92%, 100% { transform: translateY(0); }
+  64.5%, 80% { transform: translateY(-4px); }
+}
+.orc-avatar--eyes-startle .orc-avatar__eye { animation: orc-avatar-startle 5.6s ease-out infinite; }
+.orc-avatar--eyes-startle .orc-avatar__pupil { animation: orc-avatar-startle-pupil 5.6s ease-out infinite; }
+.orc-avatar--eyes-startle .orc-avatar__brows { animation: orc-avatar-startle-brows 5.6s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orc-avatar,
+  .orc-avatar * {
+    animation: none !important;
+  }
+}
+</style>
+<rect width="978" height="194" rx="28" fill="#F8F3E6"/>
+<ellipse cx="99" cy="172" rx="40.5" ry="5" fill="#2E3A24" opacity="0.12"/><svg x="24" y="18" viewBox="0 0 128 128" width="150" height="150" class="orc-avatar orc-avatar--hop orc-avatar--eyes-blink" role="img" aria-label="Orc avatar"><g class="orc-avatar__rig"><g class="orc-avatar__ears"><g class="orc-avatar__ear orc-avatar__ear--left"><path d="M31 54C21 52 11 47 4 40C7 53 15 67 31 74Z" fill="#6FA05A" stroke="#26341F" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M27 58C20 56 14 52 10 48C13 56 18 63 27 68Z" fill="#797B4A"/></g><g class="orc-avatar__ear orc-avatar__ear--right"><path d="M97 54C107 52 117 47 124 40C121 53 113 67 97 74Z" fill="#6FA05A" stroke="#26341F" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M101 58C108 56 114 52 118 48C115 56 110 63 101 68Z" fill="#797B4A"/></g></g><g class="orc-avatar__body"><path d="M64 26C92 26 106 44 106 68C106 94 88 112 64 112C40 112 22 94 22 68C22 44 36 26 64 26Z" fill="#6FA05A" stroke="#26341F" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="47" cy="41" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.22" transform="rotate(-25 47 41)"/><ellipse cx="64" cy="90" rx="22" ry="13" fill="#8FB275"/><ellipse cx="35" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/><ellipse cx="93" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/></g><g class="orc-avatar__face"><g class="orc-avatar__eyes"><g class="orc-avatar__eye orc-avatar__eye--left"><circle cx="47" cy="64" r="9.5" fill="#FFFCF2" stroke="#26341F" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="48.14" cy="64.95" r="5.2" fill="#26341F"/><circle cx="46.27" cy="62.7" r="1.87" fill="#FFFFFF"/><circle cx="50.01" cy="66.63" r="0.94" fill="#FFFFFF" opacity="0.85"/></g></g><g class="orc-avatar__eye orc-avatar__eye--right"><circle cx="81" cy="64" r="9.5" fill="#FFFCF2" stroke="#26341F" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="79.86" cy="64.95" r="5.2" fill="#26341F"/><circle cx="77.99" cy="62.7" r="1.87" fill="#FFFFFF"/><circle cx="81.73" cy="66.63" r="0.94" fill="#FFFFFF" opacity="0.85"/></g></g></g><g class="orc-avatar__brows"><g class="orc-avatar__brow orc-avatar__brow--left"><path d="M37 51C42 45 52 45 58 49" fill="none" stroke="#2E2A26" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__brow orc-avatar__brow--right"><path d="M91 51C86 45 76 45 70 49" fill="none" stroke="#2E2A26" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g class="orc-avatar__nose"><path d="M57 78C57 73.5 71 73.5 71 78C71 82 57 82 57 78Z" fill="#587D47"/><ellipse cx="61" cy="78.4" rx="1.3" ry="1.8" fill="#26341F"/><ellipse cx="67" cy="78.4" rx="1.3" ry="1.8" fill="#26341F"/></g><g class="orc-avatar__mouth orc-avatar__mouth--smile"><path d="M53 89Q64 97 75 89" fill="none" stroke="#26341F" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__tusks"><path d="M48 95C48 88.7 48.3 84.08 49.5 81C51.9 85.2 56 88 56 95Z" fill="#F7EFDC" stroke="#26341F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M80 95C80 88.7 79.7 84.08 78.5 81C76.1 85.2 72 88 72 95Z" fill="#F7EFDC" stroke="#26341F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></g></g><g class="orc-avatar__hair orc-avatar__hair--front"><path d="M55 40C52 33 51 26 52 17L58 24L59 10L64 20L67 6L70 19L75 10L75 23L78 16C79 26 77 33 74 40C68 37.5 61 37.5 55 40Z" fill="#2E2A26" stroke="#26341F" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></g></g></svg><ellipse cx="255" cy="172" rx="40.5" ry="5" fill="#2E3A24" opacity="0.12"/><svg x="180" y="18" viewBox="0 0 128 128" width="150" height="150" class="orc-avatar orc-avatar--bob orc-avatar--eyes-squint" role="img" aria-label="Orc avatar"><g class="orc-avatar__rig"><g class="orc-avatar__ears"><g class="orc-avatar__ear orc-avatar__ear--left"><path d="M31 53C19 49 8 40 1 29C4 46 14 65 31 74Z" fill="#3E7A37" stroke="#1C2C17" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M27 57C19 53 12 46 7 39C11 50 17 60 27 68Z" fill="#5B6334"/></g><g class="orc-avatar__ear orc-avatar__ear--right"><path d="M97 53C109 49 120 40 127 29C124 46 114 65 97 74Z" fill="#3E7A37" stroke="#1C2C17" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M101 57C109 53 116 46 121 39C117 50 111 60 101 68Z" fill="#5B6334"/></g></g><g class="orc-avatar__body"><path d="M64 28C86 28 100 40 103 56C107 76 106 98 90 108C78 114 50 114 38 108C22 98 21 76 25 56C28 40 42 28 64 28Z" fill="#3E7A37" stroke="#1C2C17" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="47" cy="41" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.22" transform="rotate(-25 47 41)"/><ellipse cx="64" cy="90" rx="22" ry="13" fill="#68955A"/><ellipse cx="35" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/><ellipse cx="93" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/></g><g class="orc-avatar__face"><g class="orc-avatar__markings"><path d="M29 73L41 76" fill="none" stroke="#B8302A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M99 73L87 76" fill="none" stroke="#B8302A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M28 79L40 82" fill="none" stroke="#B8302A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M100 79L88 82" fill="none" stroke="#B8302A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M30 85L39 87" fill="none" stroke="#B8302A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M98 85L89 87" fill="none" stroke="#B8302A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M64 38L64 54" fill="none" stroke="#B8302A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></g><g class="orc-avatar__eyes"><g class="orc-avatar__eye orc-avatar__eye--left"><path d="M37 59L57 65C57 71 53 74 47 74C41 74 37 70 37 59Z" fill="#FFFCF2" stroke="#1C2C17" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="48" cy="68" r="4.2" fill="#1C2C17"/><circle cx="46.5" cy="66.2" r="1.5" fill="#FFFFFF"/><circle cx="49.5" cy="69.35" r="0.75" fill="#FFFFFF" opacity="0.85"/></g><path d="M36 58.5L58 65" fill="none" stroke="#1C2C17" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__eye orc-avatar__eye--right"><path d="M91 59L71 65C71 71 75 74 81 74C87 74 91 70 91 59Z" fill="#FFFCF2" stroke="#1C2C17" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="80" cy="68" r="4.2" fill="#1C2C17"/><circle cx="78.5" cy="66.2" r="1.5" fill="#FFFFFF"/><circle cx="81.5" cy="69.35" r="0.75" fill="#FFFFFF" opacity="0.85"/></g><path d="M92 58.5L70 65" fill="none" stroke="#1C2C17" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g class="orc-avatar__brows"><g class="orc-avatar__brow orc-avatar__brow--left"><path d="M36 46C44 47 52 50 58 55" fill="none" stroke="#2E2A26" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__brow orc-avatar__brow--right"><path d="M92 46C84 47 76 50 70 55" fill="none" stroke="#2E2A26" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g class="orc-avatar__nose"><path d="M57 78C57 73.5 71 73.5 71 78C71 82 57 82 57 78Z" fill="#35622E"/><ellipse cx="61" cy="78.4" rx="1.3" ry="1.8" fill="#1C2C17"/><ellipse cx="67" cy="78.4" rx="1.3" ry="1.8" fill="#1C2C17"/></g><g class="orc-avatar__mouth orc-avatar__mouth--smile"><path d="M53 89Q64 97 75 89" fill="none" stroke="#1C2C17" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__tusks"><path d="M47.25 95C47.25 86 45.58 79.4 47 75C49.85 81 56.75 85 56.75 95Z" fill="#F7EFDC" stroke="#1C2C17" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M80.75 95C80.75 86 82.43 79.4 81 75C78.15 81 71.25 85 71.25 95Z" fill="#F7EFDC" stroke="#1C2C17" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></g><g class="orc-avatar__trinket orc-avatar__trinket--nose-ring"><circle cx="64" cy="83.5" r="4.2" fill="none" stroke="#1C2C17" stroke-width="3.6"/><circle cx="64" cy="83.5" r="4.2" fill="none" stroke="#E8B53E" stroke-width="2"/></g></g></g></svg><ellipse cx="411" cy="172" rx="40.5" ry="5" fill="#2E3A24" opacity="0.12"/><svg x="336" y="18" viewBox="0 0 128 128" width="150" height="150" class="orc-avatar orc-avatar--sway orc-avatar--eyes-wink" role="img" aria-label="Orc avatar"><g class="orc-avatar__rig"><g class="orc-avatar__ears"><g class="orc-avatar__ear orc-avatar__ear--left"><path d="M31 54C21 52 11 47 4 40C7 53 15 67 31 74Z" fill="#C0644A" stroke="#38271B" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M27 58C20 56 14 52 10 48C13 56 18 63 27 68Z" fill="#AB5640"/></g><g class="orc-avatar__ear orc-avatar__ear--right"><path d="M97 54C107 52 117 47 124 40C121 53 113 67 97 74Z" fill="#C0644A" stroke="#38271B" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M101 58C108 56 114 52 118 48C115 56 110 63 101 68Z" fill="#AB5640"/></g></g><g class="orc-avatar__body"><path d="M64 24C88 24 104 46 106 70C108 96 90 112 64 112C38 112 20 96 22 70C24 46 40 24 64 24Z" fill="#C0644A" stroke="#38271B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="47" cy="41" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.22" transform="rotate(-25 47 41)"/><ellipse cx="64" cy="90" rx="22" ry="13" fill="#CE8469"/><ellipse cx="35" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/><ellipse cx="93" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/></g><g class="orc-avatar__face"><g class="orc-avatar__beard"><path d="M55 99C56 107 59 115 64 124C69 115 72 107 73 99C68 101.5 60 101.5 55 99Z" fill="#2E2A26" stroke="#38271B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></g><g class="orc-avatar__eyes"><g class="orc-avatar__eye orc-avatar__eye--left"><circle cx="47" cy="64" r="9.5" fill="#FFFCF2" stroke="#38271B" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="48.14" cy="64.95" r="5.2" fill="#38271B"/><circle cx="46.27" cy="62.7" r="1.87" fill="#FFFFFF"/><circle cx="50.01" cy="66.63" r="0.94" fill="#FFFFFF" opacity="0.85"/></g></g><g class="orc-avatar__eye orc-avatar__eye--right"><circle cx="81" cy="64" r="9.5" fill="#FFFCF2" stroke="#38271B" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="79.86" cy="64.95" r="5.2" fill="#38271B"/><circle cx="77.99" cy="62.7" r="1.87" fill="#FFFFFF"/><circle cx="81.73" cy="66.63" r="0.94" fill="#FFFFFF" opacity="0.85"/></g></g></g><g class="orc-avatar__brows"><g class="orc-avatar__brow orc-avatar__brow--left"><path d="M37 51C42 45 52 45 58 49" fill="none" stroke="#2E2A26" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__brow orc-avatar__brow--right"><path d="M91 51C86 45 76 45 70 49" fill="none" stroke="#2E2A26" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g class="orc-avatar__nose"><path d="M57 78C57 73.5 71 73.5 71 78C71 82 57 82 57 78Z" fill="#92523B"/><ellipse cx="61" cy="78.4" rx="1.3" ry="1.8" fill="#38271B"/><ellipse cx="67" cy="78.4" rx="1.3" ry="1.8" fill="#38271B"/></g><g class="orc-avatar__mouth orc-avatar__mouth--grin"><path d="M50 87Q64 91 78 87Q75 101 64 101Q53 101 50 87Z" fill="#3E1D1A" stroke="#38271B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><path d="M57 97Q64 93 71 97Q68 100.5 64 100.5Q60 100.5 57 97Z" fill="#E37B74"/></g><g class="orc-avatar__tusks"><path d="M47.75 95C47.75 88.25 47.73 83.3 49 80C51.55 84.5 56.25 87.5 56.25 95Z" fill="#F7EFDC" stroke="#38271B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="47.21" y="87.4" width="8.72" height="3.8" rx="1.6" fill="#E8B53E" stroke="#38271B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M80.25 95C80.25 88.25 80.28 83.3 79 80C76.45 84.5 71.75 87.5 71.75 95Z" fill="#F7EFDC" stroke="#38271B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="72.07" y="87.4" width="8.72" height="3.8" rx="1.6" fill="#E8B53E" stroke="#38271B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g></g><g class="orc-avatar__headgear orc-avatar__headgear--horned-helm"><path d="M33 31C20 31 9 23 6 6C13 15 22 19 35 20Z" fill="#EFE5CC" stroke="#38271B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M95 31C108 31 119 23 122 6C115 15 106 19 93 20Z" fill="#EFE5CC" stroke="#38271B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M15 21L19 17" fill="none" stroke="#38271B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/><path d="M113 21L109 17" fill="none" stroke="#38271B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/><path d="M22 25L25 20" fill="none" stroke="#38271B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/><path d="M106 25L103 20" fill="none" stroke="#38271B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/><path d="M24 38C24 20 42 10 64 10C86 10 104 20 104 38Z" fill="#8E949B" stroke="#38271B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><path d="M61 11H67V36H61Z" fill="#5E646C"/><path d="M34 27C37 19 45 15 53 13.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/><rect x="18" y="34" width="92" height="9" rx="4.5" fill="#5E646C" stroke="#38271B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="26" cy="38.5" r="1.6" fill="#C3C8CD"/><circle cx="40" cy="38.5" r="1.6" fill="#C3C8CD"/><circle cx="54" cy="38.5" r="1.6" fill="#C3C8CD"/><circle cx="74" cy="38.5" r="1.6" fill="#C3C8CD"/><circle cx="88" cy="38.5" r="1.6" fill="#C3C8CD"/><circle cx="102" cy="38.5" r="1.6" fill="#C3C8CD"/></g></g></svg><ellipse cx="567" cy="172" rx="40.5" ry="5" fill="#2E3A24" opacity="0.12"/><svg x="492" y="18" viewBox="0 0 128 128" width="150" height="150" class="orc-avatar orc-avatar--breathe orc-avatar--eyes-look-around" role="img" aria-label="Orc avatar"><g class="orc-avatar__rig"><g class="orc-avatar__hair orc-avatar__hair--back"><g class="orc-avatar__braid orc-avatar__braid--left"><path d="M16 112L14 122L18 119L20 124L22 119L26 122L24 112Z" fill="#D6D3CA" stroke="#29302D" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="20.8" cy="106" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="19.2" cy="98" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="20.8" cy="90" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="19.2" cy="82" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="20.8" cy="74" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="19.2" cy="66" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><rect x="15" y="108" width="10" height="5" rx="2" fill="#E8B53E" stroke="#29302D" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="orc-avatar__braid orc-avatar__braid--right"><path d="M112 112L114 122L110 119L108 124L106 119L102 122L104 112Z" fill="#D6D3CA" stroke="#29302D" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="107.2" cy="106" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="108.8" cy="98" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="107.2" cy="90" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="108.8" cy="82" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="107.2" cy="74" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="108.8" cy="66" rx="6" ry="5.2" fill="#D6D3CA" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><rect x="103" y="108" width="10" height="5" rx="2" fill="#E8B53E" stroke="#29302D" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g></g><g class="orc-avatar__ears"><g class="orc-avatar__ear orc-avatar__ear--left"><path d="M31 54C26 53 22 51 19 49L17 55L14 46C10 44 7 42 4 40C7 53 15 67 31 74Z" fill="#7C8C99" stroke="#29302D" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M27 59C23 58 20 57 18 56C17 60 20 64 27 68Z" fill="#816E71"/></g><g class="orc-avatar__ear orc-avatar__ear--right"><path d="M97 54C102 53 106 51 109 49L111 55L114 46C118 44 121 42 124 40C121 53 113 67 97 74Z" fill="#7C8C99" stroke="#29302D" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M101 59C105 58 108 57 110 56C111 60 108 64 101 68Z" fill="#816E71"/></g></g><g class="orc-avatar__body"><path d="M55.87 28.87Q64 25 72.13 28.87L97.87 41.13Q106 45 106 54L106 83Q106 92 97.95 96.02L72.05 108.98Q64 113 55.95 108.98L30.05 96.02Q22 92 22 83L22 54Q22 45 30.13 41.13Z" fill="#7C8C99" stroke="#29302D" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="47" cy="41" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.22" transform="rotate(-25 47 41)"/><ellipse cx="64" cy="90" rx="22" ry="13" fill="#99A3A6"/><ellipse cx="35" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/><ellipse cx="93" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/></g><g class="orc-avatar__face"><g class="orc-avatar__markings"><path d="M27 57C40 52 88 52 101 57L101 70C88 74 40 74 27 70Z" fill="#1E1A16" opacity="0.45"/></g><g class="orc-avatar__eyes"><g class="orc-avatar__eye orc-avatar__eye--left"><ellipse cx="47" cy="64" rx="9" ry="8" fill="#2A211C" stroke="#29302D" stroke-width="2"/><g class="orc-avatar__pupil"><circle class="orc-avatar__glow" cx="47" cy="64" r="7.5" fill="#FF9F1C" opacity="0.4"/><ellipse cx="47" cy="64" rx="4.4" ry="5" fill="#FFD447"/><circle cx="46" cy="62.8" r="1.8" fill="#FFF8D6"/></g></g><g class="orc-avatar__eye orc-avatar__eye--right"><ellipse cx="81" cy="64" rx="9" ry="8" fill="#2A211C" stroke="#29302D" stroke-width="2"/><g class="orc-avatar__pupil"><circle class="orc-avatar__glow" cx="81" cy="64" r="7.5" fill="#FF9F1C" opacity="0.4"/><ellipse cx="81" cy="64" rx="4.4" ry="5" fill="#FFD447"/><circle cx="80" cy="62.8" r="1.8" fill="#FFF8D6"/></g></g></g><g class="orc-avatar__brows"><path d="M36 51C42 44 54 45 64 50C74 45 86 44 92 51" fill="none" stroke="#D6D3CA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__nose"><path d="M57 78C57 73.5 71 73.5 71 78C71 82 57 82 57 78Z" fill="#616F74"/><ellipse cx="61" cy="78.4" rx="1.3" ry="1.8" fill="#29302D"/><ellipse cx="67" cy="78.4" rx="1.3" ry="1.8" fill="#29302D"/></g><g class="orc-avatar__mouth orc-avatar__mouth--roar"><path d="M52 87Q64 83 76 87Q77 103 64 104Q51 103 52 87Z" fill="#3E1D1A" stroke="#29302D" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><path d="M56 99Q64 94 72 99Q69 103.5 64 103.5Q59 103.5 56 99Z" fill="#E37B74"/></g><g class="orc-avatar__tusks"><path d="M47.25 95C47.25 86 45.58 79.4 47 75C49.85 81 56.75 85 56.75 95Z" fill="#F7EFDC" stroke="#29302D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M80.75 95C80.75 86 82.43 79.4 81 75C78.15 81 71.25 85 71.25 95Z" fill="#F7EFDC" stroke="#29302D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></g></g><g class="orc-avatar__headgear orc-avatar__headgear--skull-cap"><path d="M44 22C36 20 31 14 30 5C36 10 41 13 47 14Z" fill="#EFE5CC" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><path d="M84 22C92 20 97 14 98 5C92 10 87 13 81 14Z" fill="#EFE5CC" stroke="#29302D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><path d="M42 37L45 42L48 37L51 42L54 37L57 42L60 37L63 42L66 37L69 42L72 37L75 42L78 37L81 42L84 37Z" fill="#EFE5CC" stroke="#29302D" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M40 38C37 20 49 8 64 8C79 8 91 20 88 38Z" fill="#EFE5CC" stroke="#29302D" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="55" cy="25" rx="5" ry="5.5" fill="#2A211C"/><ellipse cx="73" cy="25" rx="5" ry="5.5" fill="#2A211C"/><path d="M62 31L64 35L66 31Z" fill="#2A211C"/><path d="M74 12L77 16L75 19" fill="none" stroke="#29302D" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/></g></g></svg><ellipse cx="723" cy="172" rx="40.5" ry="5" fill="#2E3A24" opacity="0.12"/><svg x="648" y="18" viewBox="0 0 128 128" width="150" height="150" class="orc-avatar orc-avatar--breathe orc-avatar--eyes-drowsy" role="img" aria-label="Orc avatar"><g class="orc-avatar__rig"><g class="orc-avatar__ears"><g class="orc-avatar__ear orc-avatar__ear--left"><path d="M31 52C18 53 9 62 6 77C15 78 24 75 31 70Z" fill="#A6BA8C" stroke="#333A2A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M27 56C19 58 13 64 11 72C18 72 23 69 27 66Z" fill="#9B8B69"/></g><g class="orc-avatar__ear orc-avatar__ear--right"><path d="M97 52C110 53 119 62 122 77C113 78 104 75 97 70Z" fill="#A6BA8C" stroke="#333A2A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M101 56C109 58 115 64 117 72C110 72 105 69 101 66Z" fill="#9B8B69"/></g></g><g class="orc-avatar__body"><path d="M44 28H84C100 28 106 34 106 50V90C106 106 100 112 84 112H44C28 112 22 106 22 90V50C22 34 28 28 44 28Z" fill="#A6BA8C" stroke="#333A2A" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="47" cy="41" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.22" transform="rotate(-25 47 41)"/><ellipse cx="64" cy="90" rx="22" ry="13" fill="#BAC79C"/><ellipse cx="35" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/><ellipse cx="93" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/></g><g class="orc-avatar__face"><g class="orc-avatar__markings"><circle cx="31" cy="76" r="1.15" fill="#333A2A" opacity="0.4"/><circle cx="97" cy="76" r="1.15" fill="#333A2A" opacity="0.4"/><circle cx="36" cy="78.5" r="1.15" fill="#333A2A" opacity="0.4"/><circle cx="92" cy="78.5" r="1.15" fill="#333A2A" opacity="0.4"/><circle cx="30" cy="81" r="1.15" fill="#333A2A" opacity="0.4"/><circle cx="98" cy="81" r="1.15" fill="#333A2A" opacity="0.4"/><circle cx="39" cy="75.5" r="1.15" fill="#333A2A" opacity="0.4"/><circle cx="89" cy="75.5" r="1.15" fill="#333A2A" opacity="0.4"/></g><g class="orc-avatar__eyes"><g class="orc-avatar__eye orc-avatar__eye--left"><path d="M37 64C41 62 53 62 57 64C56 71 52 73 47 73C42 73 38 71 37 64Z" fill="#FFFCF2" stroke="#333A2A" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="47.5" cy="68.4" r="3.6" fill="#333A2A"/><circle cx="46.3" cy="66.96" r="1.2" fill="#FFFFFF"/><circle cx="48.7" cy="69.48" r="0.6" fill="#FFFFFF" opacity="0.85"/></g><path d="M36 64C41 61.4 53 61.4 58 64" fill="none" stroke="#333A2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__eye orc-avatar__eye--right"><path d="M91 64C87 62 75 62 71 64C72 71 76 73 81 73C86 73 90 71 91 64Z" fill="#FFFCF2" stroke="#333A2A" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="80.5" cy="68.4" r="3.6" fill="#333A2A"/><circle cx="79.3" cy="66.96" r="1.2" fill="#FFFFFF"/><circle cx="81.7" cy="69.48" r="0.6" fill="#FFFFFF" opacity="0.85"/></g><path d="M92 64C87 61.4 75 61.4 70 64" fill="none" stroke="#333A2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g><g class="orc-avatar__brows"><g class="orc-avatar__brow orc-avatar__brow--left"><path d="M36 52C44 51 52 48 58 44" fill="none" stroke="#6B4428" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__brow orc-avatar__brow--right"><path d="M92 52C84 51 76 48 70 44" fill="none" stroke="#6B4428" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g class="orc-avatar__nose"><path d="M57 78C57 73.5 71 73.5 71 78C71 82 57 82 57 78Z" fill="#80906B"/><ellipse cx="61" cy="78.4" rx="1.3" ry="1.8" fill="#333A2A"/><ellipse cx="67" cy="78.4" rx="1.3" ry="1.8" fill="#333A2A"/></g><g class="orc-avatar__mouth orc-avatar__mouth--smirk"><path d="M53 92Q65 94 76 86" fill="none" stroke="#333A2A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__tusks"><path d="M47.75 95C47.75 90.5 47.55 89 48.55 86L51.5 88.2L53.5 85.2L55.65 88C56.25 91 56.25 91.4 56.25 95Z" fill="#F7EFDC" stroke="#333A2A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M80 95C80 88.7 79.7 84.08 78.5 81C76.1 85.2 72 88 72 95Z" fill="#F7EFDC" stroke="#333A2A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></g></g><g class="orc-avatar__hair orc-avatar__hair--front"><path d="M49 34C52 24 76 24 79 34C71 30 57 30 49 34Z" fill="#6B4428" stroke="#333A2A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="64" cy="15" r="9" fill="#6B4428" stroke="#333A2A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><path d="M58 12C61 9 67 9.5 70 14" fill="none" stroke="#333A2A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/><rect x="58" y="21" width="12" height="5" rx="2" fill="#7A4A2A" stroke="#333A2A" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g></g></svg><ellipse cx="879" cy="172" rx="40.5" ry="5" fill="#2E3A24" opacity="0.12"/><svg x="804" y="18" viewBox="0 0 128 128" width="150" height="150" class="orc-avatar orc-avatar--breathe orc-avatar--bob orc-avatar--eyes-startle" role="img" aria-label="Orc avatar"><g class="orc-avatar__rig"><g class="orc-avatar__ears"><g class="orc-avatar__ear orc-avatar__ear--left"><path d="M31 54C21 52 11 47 4 40C7 53 15 67 31 74Z" fill="#7D6352" stroke="#2A271D" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M27 58C20 56 14 52 10 48C13 56 18 63 27 68Z" fill="#825545"/></g><g class="orc-avatar__ear orc-avatar__ear--right"><path d="M97 54C107 52 117 47 124 40C121 53 113 67 97 74Z" fill="#7D6352" stroke="#2A271D" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M101 58C108 56 114 52 118 48C115 56 110 63 101 68Z" fill="#825545"/></g></g><g class="orc-avatar__body"><path d="M54 29C76 22 102 34 105 58C108 84 96 110 66 112C38 114 21 98 22 70C23 48 34 34 54 29Z" fill="#7D6352" stroke="#2A271D" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="47" cy="41" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.22" transform="rotate(-25 47 41)"/><ellipse cx="64" cy="90" rx="22" ry="13" fill="#9A836F"/><ellipse cx="35" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/><ellipse cx="93" cy="80" rx="5.5" ry="3.2" fill="#F0867A" opacity="0.5"/></g><g class="orc-avatar__face"><g class="orc-avatar__markings"><path d="M40 44L55 84" fill="none" stroke="#C09D8C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M39.4 51.1L45.1 49" fill="none" stroke="#2A271D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/><path d="M48.9 76.3L54.5 74.2" fill="none" stroke="#2A271D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/><path d="M50.6 81.1L56.2 79" fill="none" stroke="#2A271D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></g><g class="orc-avatar__beard"><path d="M27 74C28 90 36 104 46 112L49 106L53 117L58 110L64 123L70 110L75 117L79 106L82 112C92 104 100 90 101 74C96 88 84 98 64 99C44 98 32 88 27 74Z" fill="#C4622D" stroke="#2A271D" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></g><g class="orc-avatar__eyes"><g class="orc-avatar__eye orc-avatar__eye--left"><circle cx="47" cy="64" r="11" fill="#FFFCF2" stroke="#2A271D" stroke-width="2.2" stroke-linejoin="round"/><g class="orc-avatar__pupil"><circle cx="48.32" cy="65.1" r="5.6" fill="#2A271D"/><circle cx="46.3" cy="62.68" r="2.02" fill="#FFFFFF"/><circle cx="50.34" cy="66.91" r="1.01" fill="#FFFFFF" opacity="0.85"/></g></g></g><g class="orc-avatar__brows"><g class="orc-avatar__brow orc-avatar__brow--left"><path d="M37 51C42 45 52 45 58 49" fill="none" stroke="#C4622D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__brow orc-avatar__brow--right"><path d="M91 51C86 45 76 45 70 49" fill="none" stroke="#C4622D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></g><g class="orc-avatar__nose"><path d="M57 78C57 73.5 71 73.5 71 78C71 82 57 82 57 78Z" fill="#625141"/><ellipse cx="61" cy="78.4" rx="1.3" ry="1.8" fill="#2A271D"/><ellipse cx="67" cy="78.4" rx="1.3" ry="1.8" fill="#2A271D"/></g><g class="orc-avatar__mouth orc-avatar__mouth--smile"><path d="M53 89Q64 97 75 89" fill="none" stroke="#2A271D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g><g class="orc-avatar__tusks"><path d="M47.25 95C47.25 86.45 45.58 80.18 47 76C49.85 81.7 56.75 85.5 56.75 95Z" fill="#F7EFDC" stroke="#2A271D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M79.5 95C79.5 90.95 78.05 87.98 77 86C74.9 88.7 72.5 90.5 72.5 95Z" fill="#F7EFDC" stroke="#2A271D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></g><g class="orc-avatar__trinket orc-avatar__trinket--eyepatch"><path d="M24 47L70 57" fill="none" stroke="#2B2420" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M92 67L106 71" fill="none" stroke="#2B2420" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M69 59C71 52 90 51 93 60C95 70 87 76 80 75.5C72 75 67 67 69 59Z" fill="#2B2420" stroke="#2A271D" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><path d="M74 58C78 56 84 56 88 58" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.18"/></g></g><g class="orc-avatar__headgear orc-avatar__headgear--bandana"><g class="orc-avatar__tails"><path d="M104 46C112 43 119 45 126 40C123 48 117 52 106 51Z" fill="#8F2A1D" stroke="#2A271D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><path d="M104 50C111 54 115 60 121 63C115 65 109 59 103 54Z" fill="#8F2A1D" stroke="#2A271D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></g><path d="M20 46C30 28 98 28 108 46L107 53C96 37 32 37 21 53Z" fill="#C9432F" stroke="#2A271D" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36" cy="41" r="1.4" fill="#FFFFFF" opacity="0.75"/><circle cx="50" cy="36.5" r="1.4" fill="#FFFFFF" opacity="0.75"/><circle cx="64" cy="35" r="1.4" fill="#FFFFFF" opacity="0.75"/><circle cx="78" cy="36.5" r="1.4" fill="#FFFFFF" opacity="0.75"/><circle cx="92" cy="41" r="1.4" fill="#FFFFFF" opacity="0.75"/><circle cx="104" cy="48.5" r="4.5" fill="#C9432F" stroke="#2A271D" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></g></g></svg>
+</svg>

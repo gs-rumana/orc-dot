@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "icons": "vite-node --config vitest.config.ts scripts/generate-icons.ts",
+    "readme-art": "vite-node --config vitest.config.ts scripts/generate-readme-art.ts",
     "deploy": "next build && npx -y firebase-tools@15 deploy --only hosting"
   },
   "engines": {
