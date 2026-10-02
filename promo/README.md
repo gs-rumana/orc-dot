@@ -1,6 +1,11 @@
-# Promo video
+# Promo videos
 
-`orc-dot-promo.mp4` is a 23.5s square clip made for posting on X:
+There are two cuts, both 23.5s square clips made for posting on X, with the same specs and soundtrack engine:
+
+- **2D:** `orc-dot-promo.mp4` (poster `orc-dot-promo-poster.png`), described below.
+- **3D:** `orc-dot-3d-promo.mp4` (poster `orc-dot-3d-promo-poster.png`). See [3D cut](#3d-cut).
+
+`orc-dot-promo.mp4` is the 2D cut:
 
 - **Video:** 1080×1080 H.264 (High), 30fps, yuv420p
 - **Audio:** AAC-LC stereo, 48 kHz, 192 kbps, normalized to -14 LUFS integrated, true peak ≈ -2 dBTP
@@ -42,6 +47,22 @@ Cue times aren't typed in by hand. `build.ts` writes them to `promo/.build/cues.
 4. Two-pass `loudnorm` to -14 LUFS / -1.5 dBTP.
 5. The video stream is copied unchanged (`-c:v copy`).
 
+## 3D cut
+
+Every orc is real `buildAvatar` / `animateAvatar` output from the 3D studio, lit with the studio's rig and drawn frame by frame with WebGL. `promo/stage-3d.ts` is the browser half: it gives each orc its own viewport on one transparent canvas. `promo/build-3d.ts` lays out the shots, bundles the stage with esbuild into `promo/.build/promo-3d.html`, and writes `cues-3d.json`.
+
+| Time | Shot | Sound |
+| --- | --- | --- |
+| 0–2.6s | "Now in fluffy 3D." The brand orc hops while the camera eases round | boing on take-off (0.9s), thud on landing (1.52s) |
+| 2.6–5.4s | "Fuzzy from every side." A full turntable spin of a bandana-and-braids orc | spin: a long whoosh that rises and falls |
+| 5.4–9.4s | "Pick a color." Ten colors on the beat, from plush lime to ember skin, with the color row lighting up | click + pentatonic pop on each |
+| 9.4–13.0s | "Gear up." Horned helm, spiked crown, bandana, skull cap, each turning a little | the 2D cut's per-headgear sounds |
+| 13.0–17.0s | "Faces with attitude." Wink, roar, look around, drowsy | ting, slide whistle, eye dart, yawn |
+| 17.0–20.2s | "Every orc moves on its own." Nine random plush orcs | pop ripple |
+| 20.2–23.5s | End card: three orcs, the logo, "Free · No sign-up · Export PNG + GLB" | pops, chime |
+
+The music bed and mix are the same as the 2D cut. `cues-3d.json` carries `endCard: 20.2`, and the music cadences onto that beat.
+
 ## Re-rendering
 
 ```bash
@@ -51,6 +72,16 @@ node promo/record.mjs                   # silent picture → promo/.build/video.
 node promo/sound.mjs                    # synth + mix + mux → promo/orc-dot-promo.mp4 (seconds)
 ```
 
+For the 3D cut:
+
+```bash
+npx vite-node --config vitest.config.ts promo/build-3d.ts --url orc-dot.web.app   # page + cues-3d.json
+node promo/record.mjs 3d                # silent picture → promo/.build/video-3d.mp4
+node promo/sound.mjs 3d                 # → promo/orc-dot-3d-promo.mp4
+```
+
+The 3D recording uses Chrome's GPU (`--use-angle=metal` on macOS); software WebGL is far too slow for the fur.
+
 `ffmpeg` must be on PATH. To retune the audio (levels in `SFX_MIX`, voices in `SFX`, or the music), you only need to re-run `sound.mjs`. If you change scene timing, run `build.ts` first so the cues update.
 
-Intermediate files (`promo.html`, `cues.json`, `video.mp4`, and the `sfx.wav` / `music.wav` stems) live in `promo/.build/`, which is git-ignored.
+Intermediate files (`promo.html`, `cues.json`, `video.mp4`, the `sfx.wav` / `music.wav` stems, and their `-3d` counterparts) live in `promo/.build/`, which is git-ignored.
