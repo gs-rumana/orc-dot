@@ -53,8 +53,8 @@ Every orc is real `buildAvatar` / `animateAvatar` output from the 3D studio, lit
 
 | Time | Shot | Sound |
 | --- | --- | --- |
-| 0–2.6s | "Now in fluffy 3D." The brand orc hops while the camera eases round | boing on take-off (0.9s), thud on landing (1.52s) |
-| 2.6–5.4s | "Fuzzy from every side." A full turntable spin of a bandana-and-braids orc | spin: a long whoosh that rises and falls |
+| 0–2.6s | "Now in fluffy 3D." A bald brand orc hops while the camera eases round | boing on take-off (0.9s), thud on landing (1.52s) |
+| 2.6–5.4s | "Fuzzy from every side." A full turntable spin of a bandana orc | spin: a long whoosh that rises and falls |
 | 5.4–9.4s | "Pick a color." Ten colors on the beat, from plush lime to ember skin, with the color row lighting up | click + pentatonic pop on each |
 | 9.4–13.0s | "Gear up." Horned helm, spiked crown, bandana, skull cap, each turning a little | the 2D cut's per-headgear sounds |
 | 13.0–17.0s | "Faces with attitude." Wink, roar, look around, drowsy | ting, slide whistle, eye dart, yawn |

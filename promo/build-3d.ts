@@ -70,7 +70,7 @@ const swatches: { hex: string; at: number; until: number }[] = [];
   const liftoff = 0.9;
   const shift = 2.8 + 0.18 - liftoff;
   actors.push({
-    config: C({ ...BRAND, motion: "hop" }),
+    config: C({ ...BRAND, hair: "none", motion: "hop" }),
     furry: plush("lime"),
     x: 540, y: 620, size: 860, start: 0, end: 2.6, shift,
     yaw: -0.35, turn: 0.6,
@@ -83,7 +83,7 @@ const swatches: { hex: string; at: number; until: number }[] = [];
 {
   const start = 2.6;
   actors.push({
-    config: C({ hair: "braids", headgear: "bandana", tusks: "large", markings: "warpaint", trinket: "earrings", mouth: "grin", motion: "breathe", eyeMotion: "blink" }),
+    config: C({ hair: "none", headgear: "bandana", tusks: "large", markings: "warpaint", trinket: "earrings", mouth: "grin", motion: "breathe", eyeMotion: "blink" }),
     furry: plush("blue"),
     x: 540, y: 600, size: 860, start, end: 5.4, shift: 0.4,
     yaw: 0.065, turn: Math.PI * 2, easeTurn: true,
@@ -105,7 +105,7 @@ const swatches: { hex: string; at: number; until: number }[] = [];
   picks.forEach((pick, i) => {
     const t0 = start + i * step;
     actors.push({
-      config: C({ ...BRAND, skin: pick.skin, motion: "bob" }),
+      config: C({ ...BRAND, hair: "none", skin: pick.skin, motion: "bob" }),
       furry: pick.furry,
       x: 540, y: 560, size: 760, start: t0, end: t0 + step, shift: 0.5 + i * 0.2,
       yaw: 0.3 - i * 0.06, turn: -0.06, pop: true,
