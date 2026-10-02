@@ -34,6 +34,8 @@ interface SectionSpec {
   icon: IconType;
   /** Renders options as colour dots instead of text chips. */
   swatches?: (value: string, config: AvatarConfig) => string;
+  /** Overrides the display name of an option. */
+  label?: (value: string) => string;
 }
 
 const TABS: { id: string; label: string; sections: SectionSpec[] }[] = [
@@ -95,6 +97,7 @@ function Section({
 }) {
   const Icon = spec.icon;
   const current = value[spec.field];
+  const label = spec.label ?? optionLabel;
   const headingId = `section-${spec.field}`;
   return (
     <section className="space-y-2.5" aria-labelledby={headingId}>
@@ -107,7 +110,7 @@ function Section({
         </h3>
         {spec.swatches ? (
           <span className="ml-auto text-xs font-semibold text-muted-foreground">
-            {optionLabel(current)}
+            {label(current)}
           </span>
         ) : null}
       </div>
@@ -124,8 +127,8 @@ function Section({
             <ToggleGroupItem
               key={option}
               value={option}
-              aria-label={optionLabel(option)}
-              title={optionLabel(option)}
+              aria-label={label(option)}
+              title={label(option)}
               className={SWATCH}
               style={{ backgroundColor: spec.swatches(option, value) }}
             />
@@ -133,10 +136,10 @@ function Section({
             <ToggleGroupItem
               key={option}
               value={option}
-              aria-label={optionLabel(option)}
+              aria-label={label(option)}
               className={CHIP}
             >
-              {optionLabel(option)}
+              {label(option)}
             </ToggleGroupItem>
           ),
         )}
@@ -148,9 +151,15 @@ function Section({
 export function StudioControls({
   value,
   onChange,
+  hidden = [],
+  matchHairColor,
 }: {
   value: AvatarConfig;
   onChange: (next: AvatarConfig) => void;
+  /** Fields another panel already controls (3D shows skin as its Color). */
+  hidden?: Field[];
+  /** Swatch for "match" hair when it follows something other than the skin. */
+  matchHairColor?: string;
 }) {
   // The field just picked wins any conflict (e.g. a helm replaces a mohawk).
   const onPick = (field: Field, next: string) => {
@@ -176,9 +185,25 @@ export function StudioControls({
       </Tabs.List>
       {TABS.map((tab) => (
         <Tabs.Panel key={tab.id} value={tab.id} className="flex flex-col gap-5 outline-none">
-          {tab.sections.map((spec) => (
-            <Section key={spec.field} spec={spec} value={value} onPick={onPick} />
-          ))}
+          {tab.sections
+            .filter((spec) => !hidden.includes(spec.field))
+            .map((spec) => (
+              <Section
+                key={spec.field}
+                spec={
+                  spec.field === "hairColor" && matchHairColor
+                    ? {
+                        ...spec,
+                        swatches: (v, config) =>
+                          v === "match" ? matchHairColor : spec.swatches!(v, config),
+                        label: (v) => (v === "match" ? "Match color" : optionLabel(v)),
+                      }
+                    : spec
+                }
+                value={value}
+                onPick={onPick}
+              />
+            ))}
         </Tabs.Panel>
       ))}
     </Tabs.Root>
