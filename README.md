@@ -59,12 +59,21 @@ These orcs don't just sit there.
 
 ## Taking your orc home 🏠
 
-Hit **Export** and you get:
+Hit **Export** and pick a format:
 
-1. **SVG:** the orc itself, with readable class names like `orc-avatar__eyes`, `orc-avatar__tusks` and `orc-avatar__headgear`, plus modifiers such as `orc-avatar--hop` and `orc-avatar--eyes-wink`.
-2. **CSS snippet:** only the keyframes your orc actually uses. No Tailwind, no framework. Every moving part pivots on fixed viewBox coordinates (`transform-box: view-box`), so ears twitch from the base and earrings swing from the lobe.
+| Format | Best for | What you get |
+|---|---|---|
+| **SVG + CSS** | Websites | The SVG with readable class names (`orc-avatar__eyes`, `orc-avatar--hop`…) plus a CSS snippet with only the keyframes your orc uses. Copy or download either. |
+| **Animated SVG** | Anywhere SVG goes | One file with the CSS built in, so it animates even inside `<img>`. |
+| **PNG** | Profile photos, docs | A still image at 256–2048px, transparent or on white. |
+| **GIF** | Chats, forums, email | A seamless loop at 128–512px, transparent or on white. |
+| **Lottie** | Apps (lottie-web, iOS, Android) | Vector JSON: every shape stays a shape, with keyframed motion. |
 
-> **Heads up:** your page's CSS can't reach inside an SVG loaded with `<img src="orc.svg">`. To animate, paste the SVG **inline** in your HTML next to the CSS snippet. The downloaded `.svg` on its own works as a static image anywhere.
+Every moving part in the CSS pivots on fixed viewBox coordinates (`transform-box: view-box`), so ears twitch from the base and earrings swing from the lobe. Exported CSS respects `prefers-reduced-motion`.
+
+> **Heads up:** your page's CSS can't reach inside an SVG loaded with `<img src="orc.svg">`. To animate the plain SVG, paste it **inline** in your HTML next to the CSS snippet, or grab the **Animated SVG** instead.
+
+**How GIF and Lottie are made:** the studio plays your orc's real CSS animation in a hidden, style-isolated copy, steps it frame by frame with the Web Animations API and records every moving part's pose. Parts that cycle at different speeds (a 7.2s blink, a 4.4s breath, ears on their own clocks) are gently retimed so that they all loop seamlessly. GIF frames are drawn from those poses. Lottie keeps the vector shapes and turns the poses into keyframes. Everything runs in your browser.
 
 What you see in the studio is exactly what you export: the preview renders the same SVG string as the download.
 
@@ -102,6 +111,7 @@ Layers, back to front: hair (back) → ears → head → face (markings, beard, 
 - `lib/avatar/buildCss.ts` emits only the animation rules a given orc needs.
 - `lib/avatar/catalog.ts` holds the palette, shared layout anchors and head shapes.
 - `lib/avatar/normalize.ts` validates configs and resolves wardrobe clashes.
+- `lib/avatar/export/` builds the extra formats: the animated SVG, frame sampling (`sample.ts`), baked frames, PNG/GIF (`raster.ts`, via [gifenc](https://github.com/mattdesl/gifenc)) and Lottie (`lottie.ts`). The browser-only parts load on demand when you export.
 
 </details>
 
