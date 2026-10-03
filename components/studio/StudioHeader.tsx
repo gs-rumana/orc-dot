@@ -7,7 +7,7 @@ export function StudioHeader() {
         </h1>
         <p className="text-sm font-medium text-muted-foreground">
           A cute animated orc avatar maker. Mix tusks, war paint and trinkets,
-          then export SVG + CSS.
+          then export it as SVG, PNG, GIF or Lottie.
         </p>
       </div>
     </header>

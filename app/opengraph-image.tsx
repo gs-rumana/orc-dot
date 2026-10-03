@@ -49,7 +49,7 @@ export default async function Image() {
           Orc<span style={{ color: "#3F7A2F", marginLeft: 22 }}>Dot</span>
         </div>
         <div style={{ display: "flex", fontSize: 36, marginTop: 14, color: "#55644A" }}>
-          Cute animated orc avatar maker · SVG + CSS
+          Cute animated orc avatar maker · SVG, GIF, Lottie
         </div>
       </div>
     ),
