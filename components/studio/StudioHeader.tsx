@@ -6,8 +6,8 @@ export function StudioHeader() {
           Orc <span className="text-primary">Dot</span>
         </h1>
         <p className="text-sm font-medium text-muted-foreground">
-          A cute animated orc avatar maker. Mix tusks, war paint and trinkets,
-          then export SVG + CSS.
+          Tiny tusked friends in 2D and 3D. Mix war paint, gear, and fluffy
+          coats, then take your orc home.
         </p>
       </div>
     </header>

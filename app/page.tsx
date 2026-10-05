@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 const STEPS = [
   {
     title: "Pick a face",
-    body: "Choose from 6 head shapes, 8 skin tones, pointy or droopy ears, 8 eye styles, brows, mouths and tusks.",
+    body: "Choose a classic SVG orc or a plush 3D orc. Pick its color, ears, eyes, mouth and tusks.",
   },
   {
     title: "Gear up",
@@ -20,7 +20,7 @@ const STEPS = [
 const FAQ = [
   {
     q: "What do I get when I export?",
-    a: "A standalone SVG file plus a small CSS snippet with just the animations your orc uses. No frameworks or libraries are needed.",
+    a: "2D orcs export as SVG plus animation CSS. 3D furry orcs export as a transparent PNG portrait or a GLB model with fur and gear. GLB models do not include preview animations or studio lighting.",
   },
   {
     q: "Why doesn't my avatar move when I use it as an image?",

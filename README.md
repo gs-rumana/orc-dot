@@ -19,7 +19,7 @@ then take it home as a tidy SVG + CSS snippet. No sign-up, no uploads, no goblin
 
 Orc Dot is a little avatar studio for people who think every profile picture should have tusks.
 
-Pick a head shape, slap on some war paint, choose how your orc wiggles, and export it. Every orc is pure vector: one SVG plus a small CSS file. It stays crisp at 16px or on a billboard, and it breathes, blinks and twitches its ears on its own.
+Pick a head shape, slap on some war paint, choose how your orc wiggles, and export it. In **2D SVG** mode, your orc is one SVG plus a small CSS file. It stays crisp at 16px or on a billboard, and it breathes, blinks and twitches its ears on its own. Switch to **3D furry** for a plush orc with short, dense fur and orc gear.
 
 <div align="center">
 <img src="docs/studio.png" alt="The Orc Dot studio: a forest-green orc with a mohawk, red bandana, warpaint, nose ring, goatee and large tusks, with the Gear tab open showing hair, beard, headgear, war paint and trinket options" width="100%">
@@ -38,7 +38,7 @@ Mix and match from **six head shapes** and a **pile of gear**. Every accessory l
 | **Brows** | heavy, angry, worried, unibrow |
 | **Mouths** | smile, grin, smirk, grumpy, roar |
 | **Tusks** | small, medium, large, asymmetric, chipped, gilded (they grow *up*, like proper tusks) |
-| **Hair** | mohawk, topknot, tufts, mane, braids, in black, brown, ginger, silver or skin tone |
+| **Hair** | mohawk, topknot, tufts, mane, braids, in black, brown, ginger, silver, or matched to the orc (skin tone in 2D, coat color in 3D) |
 | **Beards** | goatee, braided, full, mutton chops |
 | **Headgear** | horned helm, spiked crown, bandana, skull cap |
 | **War paint** | warpaint, mask, tribal, scar, freckles |
@@ -59,7 +59,7 @@ These orcs don't just sit there.
 
 ## Taking your orc home 🏠
 
-Hit **Export** and you get:
+In **2D SVG** mode, hit **Export** and you get:
 
 1. **SVG:** the orc itself, with readable class names like `orc-avatar__eyes`, `orc-avatar__tusks` and `orc-avatar__headgear`, plus modifiers such as `orc-avatar--hop` and `orc-avatar--eyes-wink`.
 2. **CSS snippet:** only the keyframes your orc actually uses. No Tailwind, no framework. Every moving part pivots on fixed viewBox coordinates (`transform-box: view-box`), so ears twitch from the base and earrings swing from the lobe.
@@ -67,6 +67,30 @@ Hit **Export** and you get:
 > **Heads up:** your page's CSS can't reach inside an SVG loaded with `<img src="orc.svg">`. To animate, paste the SVG **inline** in your HTML next to the CSS snippet. The downloaded `.svg` on its own works as a static image anywhere.
 
 What you see in the studio is exactly what you export: the preview renders the same SVG string as the download.
+
+## Make a furry 3D orc 🧸
+
+<div align="center">
+<img src="docs/studio-3d.png" alt="The Orc Dot studio in 3D furry mode: a plush ember-colored orc in a gold spiked crown, with heavy brows, earrings, gilded tusks and a roaring mouth, next to the Color row of plush colors and skin tones" width="100%">
+</div>
+
+Choose **3D furry** above the preview, then pick a **Color** and a **Velvet** or **Plush** texture. Color is one row: four bright plush colors (lime, blue, yellow, pink) followed by the eight orc skin tones. Picking a skin tone also sets the orc's skin, so it carries over to 2D. The Face, Gear, and Motion tabs cover everything else. Each mode keeps its own avatar while you switch between them.
+
+What the plush version gets right:
+
+- **Faces:** mouths are traced from the 2D artwork, so a smile curves the same way in both modes. They sit like embroidery on fur that's groomed short around the mouth and eyes. Grins and roars open into a dark mouth with a stitched lip and a soft tongue.
+- **Tusks:** curved ivory that grows out of the jaw. **Chipped** snaps the left tusk into a stub with a jagged break of darker dentin. **Gilded** wraps both in a thick, beaded gold band.
+- **Headgear:** an iron **horned helm** with riveted bands and big ridged viking horns, a gold **spiked crown** with a tall centre point, a red gem and studs, a cotton **bandana** with polka dots, stitched hems, a bunched knot and two notched tails, and a felt **skull cap**.
+- **The rest:** ears match the coat, with shaded inner folds and pierced hoops. Hair and beards grow out of the coat, braids weave into plaits, and war paint, scars and freckles follow the fur. Blinks close quickly and open gently, hops crouch and settle, and ears, earrings, braids and bandana tails follow the body.
+
+Drag the preview to rotate, and scroll or pinch to zoom. With the preview focused, use the arrow keys to rotate, **+** and **−** to zoom, or **Home** to reset the view. **Pause** freezes the animation while you choose an angle; **Reset view** returns to the front.
+
+Choose **Export 3D avatar** for either:
+
+- **Download PNG:** a transparent 1024 × 1024 portrait from your current angle and pose.
+- **Download GLB:** a 3D model with fur, colors, and gear, ready to open in a 3D viewer or import into Blender. The model uses a neutral pose and does not include the preview animations or studio lighting.
+
+3D mode needs a browser with WebGL and hardware acceleration. If the preview reports a lost graphics connection, switch to **2D SVG** and back to reload it.
 
 ## Run it locally
 
@@ -89,7 +113,9 @@ npm run dev        # → http://localhost:3000
 | `npm run readme-art` | Regenerate the animated orc parade at the top of this README |
 | `npm run deploy` | Build and ship to Firebase Hosting |
 
-**Built with** Next.js (App Router, static export), React, TypeScript, Tailwind, shadcn/ui + Base UI, iconsax-react, Fredoka + Nunito, and Vitest.
+The square promo videos for social posts (a 2D cut and a 3D cut, both with a synthesized soundtrack) are rendered from the real avatar code; see [`promo/README.md`](promo/README.md).
+
+**Built with** Next.js (App Router, static export), React, Three.js, TypeScript, Tailwind, shadcn/ui + Base UI, iconsax-react, Fredoka + Nunito, and Vitest.
 
 <details>
 <summary><b>How the orc is put together</b></summary>
@@ -102,6 +128,13 @@ Layers, back to front: hair (back) → ears → head → face (markings, beard, 
 - `lib/avatar/buildCss.ts` emits only the animation rules a given orc needs.
 - `lib/avatar/catalog.ts` holds the palette, shared layout anchors and head shapes.
 - `lib/avatar/normalize.ts` validates configs and resolves wardrobe clashes.
+
+The 3D orc is built from the same config:
+
+- `lib/avatar/three/buildAvatar.ts` sculpts the plush body, places about 46,000 fur fibers, and builds the face, tusks, hair and gear. `animateAvatar` poses it for any moment in time, so paused frames and recordings are deterministic.
+- `lib/avatar/three/surfaceDetails.ts` holds the face map shared by the skin and every fiber: recesses, mouth outlines traced from the 2D paths, war paint masks, and where hair grows or fur is trimmed.
+- `lib/avatar/three/geometry.ts` has the swept tubes, face-hugging patches, ears and eyes; `exportGlb.ts` writes the GLB.
+- `lib/avatar/three/types.ts` defines the fur colors and the single coat color that drives fur, markings and matched hair.
 
 </details>
 
