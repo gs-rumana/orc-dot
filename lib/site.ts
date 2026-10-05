@@ -22,7 +22,7 @@ export const SITE = {
   url: resolveSiteUrl(),
   title: "Orc Dot – Cute Animated Orc Avatar Maker",
   description:
-    "Make cute animated orcs in 2D or soft, furry avatars in 3D. Mix tusks, war paint, and gear, then export SVG, PNG, or GLB. Free, no sign-up.",
+    "Make cute animated orcs in 2D or soft, furry avatars in 3D. Mix tusks, war paint and gear, then export as SVG, PNG, GIF, Lottie or GLB. Free, no sign-up.",
   keywords: [
     "orc avatar",
     "orc avatar maker",
@@ -33,6 +33,8 @@ export const SITE = {
     "profile picture maker",
     "fantasy avatar",
     "CSS animation",
+    "animated GIF avatar",
+    "Lottie animation",
     "3D furry avatar",
     "Three.js avatar",
   ],

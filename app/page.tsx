@@ -20,11 +20,11 @@ const STEPS = [
 const FAQ = [
   {
     q: "What do I get when I export?",
-    a: "2D orcs export as SVG plus animation CSS. 3D furry orcs export as a transparent PNG portrait or a GLB model with fur and gear. GLB models do not include preview animations or studio lighting.",
+    a: "2D orcs come in your pick of formats: an SVG plus a small CSS snippet for websites, a single animated SVG, a PNG up to 2048px, a looping GIF, or a Lottie file for apps. No frameworks or libraries are needed. 3D furry orcs export as a transparent PNG portrait or a GLB model with fur and gear. GLB models do not include preview animations or studio lighting.",
   },
   {
     q: "Why doesn't my avatar move when I use it as an image?",
-    a: "Browsers don't run CSS animations inside SVGs loaded through an <img> tag. Paste the SVG markup inline in your HTML (or use <object>) together with the CSS snippet, and it will animate.",
+    a: "Browsers don't run CSS animations inside SVGs loaded through an <img> tag. Paste the SVG markup inline in your HTML (or use <object>) together with the CSS snippet, and it will animate. Or download the Animated SVG, which has the animation built in and moves even inside <img>.",
   },
   {
     q: "Do I need an account?",
