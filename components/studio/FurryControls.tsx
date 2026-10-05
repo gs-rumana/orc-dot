@@ -66,7 +66,7 @@ export function FurryControls({
               aria-label={optionLabel(option)}
               title={optionLabel(option)}
               style={{ backgroundColor: hex }}
-              className="size-8 min-w-8 rounded-full border-2 border-black/10 p-0 ring-offset-2 ring-offset-card hover:scale-110 aria-pressed:ring-2 aria-pressed:ring-primary"
+              className="size-8 min-w-8 rounded-full border-2 border-swatch-edge p-0 ring-offset-2 ring-offset-card hover:scale-110 aria-pressed:ring-2 aria-pressed:ring-primary"
             />
           ))}
         </ToggleGroup>

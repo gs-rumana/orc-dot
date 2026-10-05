@@ -39,5 +39,7 @@ export const SITE = {
     "Three.js avatar",
   ],
   themeColor: "#3F7A2F",
+  /** Browser bar in dark mode: the dark theme's page background. */
+  themeColorDark: "#131313",
   background: "#F8F3E6",
 } as const;

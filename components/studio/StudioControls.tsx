@@ -84,7 +84,7 @@ const CHIP =
   "h-8 rounded-full border border-border bg-card px-3 text-[0.8rem] font-semibold text-foreground/80 hover:bg-accent aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground";
 
 const SWATCH =
-  "size-8 min-w-8 rounded-full border-2 border-black/10 p-0 ring-offset-2 ring-offset-card hover:scale-110 aria-pressed:ring-2 aria-pressed:ring-primary";
+  "size-8 min-w-8 rounded-full border-2 border-swatch-edge p-0 ring-offset-2 ring-offset-card hover:scale-110 aria-pressed:ring-2 aria-pressed:ring-primary";
 
 function Section({
   spec,
