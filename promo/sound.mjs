@@ -8,6 +8,9 @@
  *          promo/.build/video.mp4  (from record.mjs — silent picture)
  * Outputs: promo/.build/{sfx,music}.wav stems, promo/orc-dot-promo.mp4
  *
+ * `node promo/sound.mjs 3d` scores the 3D cut: cues-3d.json + video-3d.mp4 →
+ * promo/orc-dot-3d-promo.mp4.
+ *
  * Mix: music is sidechain-ducked under the SFX, faded in/out, then the whole
  * mix is loudness-normalized to -14 LUFS / -1.5 dBTP and encoded as AAC.
  */
@@ -18,10 +21,13 @@ import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const build = join(here, ".build");
+const variant = process.argv[2] ? `-${process.argv[2]}` : "";
 const SR = 48000;
 const TAU = Math.PI * 2;
 
-const { duration, cues } = JSON.parse(readFileSync(join(build, "cues.json"), "utf8"));
+const { duration, cues, endCard = 20.2 } = JSON.parse(
+  readFileSync(join(build, `cues${variant}.json`), "utf8"),
+);
 const LENGTH = Math.round(duration * SR);
 
 // ─────────────────────────── DSP helpers ───────────────────────────
@@ -157,6 +163,14 @@ const SFX = {
     return SFX.pop(0, PENTA[Math.min(n + 2, PENTA.length - 1)]).map((v) => v * 0.7);
   },
 
+  /** Turntable spin: a long whoosh that rises and falls as the orc turns. */
+  spin() {
+    const seconds = 1.1;
+    const n = render(seconds, () => noise());
+    const swept = bandpass(n, (t) => 260 + 2100 * Math.sin((Math.PI * t) / seconds), 1.3);
+    return render(seconds, (t, i) => swept[i] * Math.sin((Math.PI * t) / seconds) ** 2 * 1.6);
+  },
+
   /** Short airy whoosh: band-passed noise sweeping upward. */
   whoosh(seconds = 0.32, from = 350, to = 2600) {
     const n = render(seconds, () => noise());
@@ -259,7 +273,7 @@ const SFX_MIX = {
   boing: [0.9, 0], thud: [0.8, 0], click: [0.35, 0.1], pop: [0.55, 0], "pop-small": [0.45, 0],
   "gear-horned-helm": [0.95, 0], "gear-spiked-crown": [0.9, 0], "gear-bandana": [1.4, 0.2],
   "gear-skull-cap": [0.9, 0], wink: [0.7, -0.1], startle: [0.7, 0], yawn: [1.9, 0],
-  wake: [0.8, 0], dart: [1.25, 0.15], chime: [0.9, 0],
+  wake: [0.8, 0], dart: [1.25, 0.15], chime: [0.9, 0], spin: [1.1, 0],
 };
 
 function renderSfx() {
@@ -278,7 +292,8 @@ function renderSfx() {
 // ─────────────────────────── music bed ───────────────────────────
 // 150 bpm in C major; one beat = 0.4s with the first downbeat at 0.2s, so
 // the 0.4s randomize pops land on the beat. I–V–vi–IV, cadencing G→C on the
-// end card (beat 50 = 20.2s), then the final chord rings out.
+// end card (cues.json endCard, default beat 50 = 20.2s), then the final chord
+// rings out.
 
 const BEAT = 0.4;
 const FIRST = 0.2;
@@ -289,11 +304,11 @@ const CHORDS = {
   F: [53, 57, 60],
 };
 const LOOP = ["C", "G", "Am", "F"];
-const END_BEAT = 50;
+const END_BEAT = Math.round((endCard - FIRST) / BEAT);
 
 function chordAt(beat) {
   if (beat >= END_BEAT) return "C";
-  if (beat >= 48) return "G";
+  if (beat >= END_BEAT - 2) return "G";
   return LOOP[Math.floor(beat / 4) % 4];
 }
 
@@ -354,10 +369,10 @@ function renderMusic() {
     }
 
     // Soft pad: one chord per bar (and one long chord for the ending).
-    if (inBar === 0 && beat < 48) {
+    if (inBar === 0 && beat < END_BEAT - 2) {
       chord.forEach((m, k) => out.add(voices.pad(midi(m), 4 * BEAT + 0.3), t, 0.045, (k - 1) * 0.4));
     }
-    if (beat === 48) {
+    if (beat === END_BEAT - 2) {
       CHORDS.G.forEach((m, k) => out.add(voices.pad(midi(m), 2 * BEAT + 0.3), t, 0.045, (k - 1) * 0.4));
     }
     if (beat === END_BEAT) {
@@ -394,8 +409,8 @@ function writeWav(path, { L, R }) {
   writeFileSync(path, buf);
 }
 
-const sfxPath = join(build, "sfx.wav");
-const musicPath = join(build, "music.wav");
+const sfxPath = join(build, `sfx${variant}.wav`);
+const musicPath = join(build, `music${variant}.wav`);
 writeWav(sfxPath, renderSfx());
 writeWav(musicPath, renderMusic());
 console.log("Synthesized sfx.wav and music.wav");
@@ -424,11 +439,11 @@ const pass1 = spawnSync(
 const m = JSON.parse(/\{[^{}]*"input_i"[^{}]*\}/.exec(pass1)[0]);
 
 // Pass 2: normalize linearly to the target, encode AAC, copy the video stream untouched.
-const out = join(here, "orc-dot-promo.mp4");
+const out = join(here, `orc-dot${variant}-promo.mp4`);
 execFileSync(
   "ffmpeg",
   ["-y", "-hide_banner", "-loglevel", "error",
-    "-i", join(build, "video.mp4"), "-i", sfxPath, "-i", musicPath,
+    "-i", join(build, `video${variant}.mp4`), "-i", sfxPath, "-i", musicPath,
     "-filter_complex",
     `${mixGraph(1, 2)},${loudnorm}:linear=true` +
       `:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}` +

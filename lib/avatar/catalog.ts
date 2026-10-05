@@ -50,6 +50,11 @@ export interface SkinPalette {
 
 export function getSkinPalette(skin: AvatarSkin): SkinPalette {
   const { fill, fur } = SKIN_COLORS[skin];
+  return paletteFromColors(fill, fur);
+}
+
+/** Line-work, shading and scar tints derived from any base fill. */
+export function paletteFromColors(fill: string, fur: string): SkinPalette {
   return {
     fill,
     fur,
