@@ -108,7 +108,7 @@ export function Studio() {
               : "Your tiny tusked friend"}
           </span>
         </div>
-        <div className="relative flex min-h-[340px] items-center justify-center overflow-hidden rounded-2xl bg-[radial-gradient(circle_at_50%_42%,oklch(0.93_0.05_125),oklch(0.955_0.02_95)_62%)] md:min-h-[420px]">
+        <div className="relative flex min-h-[340px] items-center justify-center overflow-hidden rounded-2xl bg-[radial-gradient(circle_at_50%_42%,var(--stage-glow),var(--stage)_62%)] md:min-h-[420px]">
           {mode === "3d" ? (
             <Avatar3DCanvas
               config={config}

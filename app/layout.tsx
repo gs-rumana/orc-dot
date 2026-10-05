@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fredoka, Nunito } from "next/font/google";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -46,17 +47,24 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: SITE.themeColor,
-  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: SITE.themeColor },
+    { media: "(prefers-color-scheme: dark)", color: SITE.themeColorDark },
+  ],
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
+    // next-themes adds the theme class to <html> before React hydrates.
     <html
       lang="en"
       className={`${fredoka.variable} ${nunito.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

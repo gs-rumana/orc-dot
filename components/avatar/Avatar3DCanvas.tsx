@@ -143,6 +143,8 @@ export default function Avatar3DCanvas({
     if (!container) return;
     let renderer: THREE.WebGLRenderer;
     try {
+      // No scene.background: the themed stage behind the canvas is the
+      // backdrop, so PNG portraits stay transparent in light and dark.
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     } catch {
       // Renderer initialization can fail only after mounting in the browser.
