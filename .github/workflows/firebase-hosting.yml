@@ -1,0 +1,54 @@
+# Ships the static export in out/ to Firebase Hosting (project orc-dot).
+#   push to main  -> lint, test, build, deploy to the live site
+#   pull request  -> same checks, then a 7-day preview URL commented on the PR
+name: Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: firebase-hosting-${{ github.event.pull_request.number || github.ref }}
+  # Superseded PR previews can stop; a live deploy always runs to the end.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  deploy:
+    # Pull requests from forks get no secrets, so they can't deploy a preview.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      # NEXT_PUBLIC_SITE_URL comes from the committed .env.production.
+      - run: npm run build
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ORC_DOT }}
+          projectId: orc-dot
+          # Blank on pull requests: the action makes a preview channel per PR.
+          channelId: ${{ github.event_name != 'pull_request' && 'live' || '' }}
+          firebaseToolsVersion: "15"

@@ -157,6 +157,7 @@ npx firebase-tools login   # once
 npm run deploy             # next build + firebase deploy --only hosting
 ```
 
+- **Automatic deploys:** `.github/workflows/firebase-hosting.yml` lints, tests and builds every push to `main`, then deploys it live. Pull requests get a 7-day preview URL posted as a comment. It needs one repository secret, `FIREBASE_SERVICE_ACCOUNT_ORC_DOT`, which `npx firebase-tools init hosting:github` creates for you.
 - **Site URL:** `NEXT_PUBLIC_SITE_URL` in `.env.production` (committed, not secret) drives canonical URLs, social images, `robots.txt` and `sitemap.xml`. If you hook up a custom domain, change it there and redeploy.
 - **Headers & caching** live in `firebase.json`, because static exports can't use `headers()` in `next.config.ts`. That covers security headers, `no-cache` HTML so deploys land instantly, year-long caching for hashed assets, and an explicit `image/png` type for the extensionless `/opengraph-image` and `/twitter-image`.
 - **Metadata routes** (`robots.ts`, `sitemap.ts`, `manifest.ts`, `opengraph-image.tsx`) must keep `export const dynamic = "force-static"`, or the export fails.
